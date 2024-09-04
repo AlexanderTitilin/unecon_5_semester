@@ -1,0 +1,124 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\title{Математическое моделирование}
+\author{}
+\date{}
+\begin{document}
+	\maketitle
+	\section{Основные понятия}
+	\begin{definition}
+		Модель -- образ или прообраз какого либо
+		объекта или системы объектов, используется
+		в качестве аналога реальной системы.
+	\end{definition}
+	\begin{definition}
+		Математическая модель -- описание
+		объекта на языке математики.
+	\end{definition}
+	\begin{definition}
+		Математическое моделирование--
+		средство исследования сложных систем и объектов
+		различной природы на основе математической моделей.
+
+	\end{definition}
+	\section{Требования}
+	\begin{enumerate}
+		\item адекватность
+		\item конечность
+		\item полнота (информативность)
+		\item упрощенность
+		\item гибкость
+		\item приемлемая трудоемокость разработки
+	\end{enumerate}
+	\section{Этапы построения модели}
+	\begin{enumerate}
+		\item Определение цели процесса моделирования
+		\item Изучение предметной области, выявить причинно-следственные связи, построить концептуальную модель
+		\item переход к формальному описанию
+		\item проверка адекватности
+		\item корректировка модели
+		\item применение модели. Проведение исследований и практическое использование.
+		\item уточнение  улучшение модели
+	\end{enumerate}
+	\section{Классификация}
+	\begin{enumerate}
+		\item Статические, Динамические модели;
+		\item Линейные, нелинейные;
+		\item Детерминированные, стотахстические;
+	\end{enumerate}
+	\section{Подходы к моделированию}
+	\begin{enumerate}
+		\item Аналитический
+		\item Аналитико-эксперементальный
+		\item Экспериментальный
+	\end{enumerate}
+	\section{Статические модели}
+	Мы связывает входы системы (независимые переменные) c
+	выходами. Хотим построить функцию, которая их связывает.
+	\subsection{Статические модели макроэкономичесих систем}
+	\subsubsection{Модель Леонтьева}
+	\begin{enumerate}
+		\item В экономике $n$ отраслений
+		\item каждая отрасль производит 1 вид продукции потребляет другие подукты
+		\item разные отрасли производят разные виды продукции
+	\end{enumerate}
+	\begin{enumerate}
+		\item $x_{ij}$ объем продукции, произведенный
+			в отрасли $i$ и потребляемой отраслью  $j$
+		\item  $X_{i}$ валовый продукт отрасли $i$
+		\item  $Y_{i}$ конечный продукт отрасли $i$
+	\end{enumerate}
+	\begin{eqnarray}
+		X_{i} = \sum_{j = 1}^{n} x_{ij} + Y_{i},~ i = 1 \dots n
+	\end{eqnarray}
+	\begin{equation}
+		a_{ij} = \frac{x_{ij}}{X_{j}} \implies X_{i}= \sum_{j=1}^{n} a_{ij} X_{j} + Y_{i}
+	\end{equation}
+	\begin{equation}
+		X = A\cdot X + Y
+	\end{equation}
+	\begin{equation}
+		X = (E-A)^{-1} \cdot Y
+	\end{equation}
+	\begin{definition}[Продуктивность]
+		Матрица $A>0$ называется \textbf{продуктивной}
+		если для любого вектора  $Y > 0$ 
+		сущестыует решение  $X>0$ уравнения  $(E-A)X  = Y$ 
+		В этом случае и модель Леонтьева называется продуктивной
+	\end{definition}
+	\begin{enumerate}
+		\item Если хотя бы для одного
+			положительного вектора $Y$ 
+			уравнение  $X=AX + Y$ имеет неотрицательное
+			решение  $X$, том атрица  $A$ продуктивна
+		\item
+			Для
+			продуктивности матрицы необходимо и достаточно существование и неотрицательности матрицы  $(E -A)^{-1}$
+		 \item Неотрицательная квадратная матрица $A$ 
+			 продуктивна тогда и только тогда 
+			 когда максимальное по модулю собственное число  $<1$ 
+		\item Неотрицательая матрица $A$ 
+			продуктивна тогда и только тогла
+			когда матрица 
+	\end{enumerate}
+	\begin{definition}
+		Обратная матрица Леонтьева $B = (E - A)^{-1}$--
+		матрица полных затрат. Элементы этой матрицы 
+		$b_{ij}$ -- количество продукции отрасли $i$ 
+		используемое для производства единицы конечного продукта отрасли  $j$
+	\end{definition}
+\end{document}

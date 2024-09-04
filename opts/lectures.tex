@@ -1,0 +1,459 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\title{Опты}
+\author{}
+\date{}
+\begin{document}
+	\maketitle
+	\section{}
+	Что мы не делали, все что не делается, предполагается
+	что это делается наилучшим образом. Естественное поведение.
+	Что значит наилучшим образом, мы должны установить цель.
+	Эта цель должна быть достигнута наиболее эффективно.
+	
+	Обычно в экономике это прибыль, быстрая реализация прибыли,
+	минимализация вреда окружающей среде. Мы определяем критерий качества.
+	Критериев может быть несколько. Мы должны выбрать переменные,
+	понять их смысл, чтобы достигнуть максимально эффективно цели.
+
+	Окружающий мир ставит рамки (ограничены
+	в финансах, энергии, площадь производства)
+
+Gg	Возникает следущая задача -- реализовать проект
+	наиболее качественно, не нарушая ограничений.
+
+	Нужно составить математическую модель. Не для всякой
+	можно построить математическую модель. Мат модель надо строить аккуратно
+	Определить главные и второстепенные элементы. Главные элементы --
+	ограничения, критерий качества, переменные. 
+
+	Вся эта бодяга появилась в середине прошлого века. В 38 году
+	появился сиплекс метод (линейное программирование) единственная
+	нобелевка по экономике в СССР. Тогда американцы строили мат модель
+	военных действий, чтоб организовать снабжение максимально быстро 
+	(группа исследований военных операций). Задача расстановки радаров
+	чтобы противник не мог подойти. Это первые 3 задачи нашего предмета.
+
+	Рассмотрим $X$ -- некий кортеж (вектор) переменных. 
+	Мы хотим найти  $X^{*}$ который является допустимым
+	(удовлетворяет всем ограничениям) $X^{*} \in D$ и 
+	$f(X^{*}) \le f(X)$ или $f(X^{*}) \ge f(X)$ для $\forall  X \in D$, 
+	$f$ целевая функция.
+	\begin{equation}
+		f(X^{*},C) = \text{extr}_{X \in D} f(X,C)
+	\end{equation}
+	Еще более короткая формулировкаа, $C$ набор заданных параметров,
+	которые не варьируются.
+	\begin{equation}
+		D= \{X \in \mathbb{R}^{N} \mid \phi_{j}(X,C) \le ,=,\ge b_{j},j=1 \dots M \land x_{i} \ge 0,i = 1,\dots N\}
+	\end{equation}
+	$\phi$ ограничения ресурсов\\
+	 $M$ число ограничений,  $N$ число переменных \\
+	 Выделяют отдельный класс ограничений,  $x \in [a,b]$ ,$x <,> C$
+	 геометрические ограничения заменяют  $x_{i}\ge 0$. Так же
+	 $M < N$ (число ограничей меньше числа  переменных)
+	 \subsection{Классификация по способу принятия решений (по инф наполнению)}
+	 \begin{enumerate}
+	 	\item статические
+		\item динамические
+	 \end{enumerate}
+	 Мы только статические изучаем
+	 \subsection{Классификаия по типу целевой функции и по типу
+	 ограничений}
+	 \begin{enumerate}
+	 	\item Целевая функция и ограничения выражаются 
+			линейными зависимостями -- мы говорим о линейном программировании.
+		\item Целевая функция квадратична, ограничения линейны -- квадратичное программирование
+		\item $f(x) = f_1(x_1)f_2(x_2)\dots f_{N}(x_{N})$ -- сепарабельное программирование
+		\item Если переменные целые, то программирование целочисленное
+		\item Если целевая функция выпуклая, то это выпулкая задача оптимизации
+	 \end{enumerate}
+	 \begin{definition}[Унимодальная задача]
+		 Задача у которой один экстренум
+	 \end{definition}
+\section{Задача безусловной оптимизации}
+Есть целевая функция 
+\begin{equation}
+F(X) , X = (x_1,x_2,\dots,x_{N}), X \in \mathcal{D} \subseteq \mathbb{R}^{N}
+\end{equation}
+\begin{eqnarray}
+	U_{\epsilon}(X), X \in \mathbb{R}^{N} : 0 < ||X-X'|| - ||\delta X|| = \sqrt{\sum_{i=1}^{N} (x_{i} - x_{i}')^2}  < \epsilon\\
+	\delta X = (x_1 - x_1',\dots, x_{N} - x'_{N})\\
+	U_{\epsilon} (X)  - \{X+ \delta X\} \text{открытый шар}
+\end{eqnarray}
+\textbf{
+}
+\begin{definition}[Точка локального экстремума]
+	\label{localExtr}
+\begin{equation}
+	\exists  U_{\epsilon}(X^{*}) : f(X^{*}) \le  f(X) \text{~или~} f(X^{*}) \ge f(X)
+\end{equation}
+\end{definition}
+\begin{definition} [Локальный минимум максимум]
+	Значение целевой функции в точке экстремума
+\end{definition}
+\begin{definition}
+	\label{globExtr}
+	\begin{equation}
+		X^{*}: \forall  x \in D: f(X^{*}) \le  f(X) \text{~или~}
+		f(X^{*}) \ge  f(X)
+	\end{equation}
+\end{definition}
+\begin{equation}
+	f^{*} =  \inf_{X \in \mathcal{D}}f(X) < f(X)
+\end{equation}
+\begin{equation}
+	f^{*} = \sup_{X \in \mathcal{D}} f(X) > f(X)
+\end{equation}
+\subsection{Постановка задачи оптимизации}
+Пусть даны:
+\begin{enumerate}
+	\item функция $f$ с областью определения $\mathcal{D}_{f} \subseteq \mathbb{R}^{N}$
+	\item множество $\mathcal{D} \subseteq \mathbb{R}^{N}$
+\end{enumerate}
+Требуется найти точку $X^{*} = (x_1^{*},x_2^{*},\dots,x^{*}_{N}) \in \mathcal{D}$ 
+в которой функция достигает экстремального значения те
+\begin{equation}
+	X^{*}:f(X^{*}) = \text{extr}_{x \in \mathcal{D_{f}}  \cap X \in \mathcal{D}} f(X)
+\end{equation}
+\begin{enumerate}
+	\item Задача на безусловный экстренум $\mathcal{D} = \mathcal{D_{f}} = \mathbb{R}^{N}$ 
+	\item Задача на условный экстремум 
+		\begin{eqnarray}
+			\mathcal{D_{f}} \subset \mathbb{R}^{N}
+		\end{eqnarray}
+		или
+		\begin{equation}
+			\mathcal{D} \subset \mathbb{R}^{N}
+		\end{equation}
+		\begin{equation}
+			\mathcal{D_{f}} \cap \mathcal{D} \neq \emptyset
+		\end{equation}
+\end{enumerate}
+\begin{equation}
+	\psi_{j}(X) \le (,=,\ge ) 0, j = 1 \dots M
+\end{equation}
+\begin{equation}
+	\mathcal{D} = \{X \in \mathbb{R}^{N}  : 
+	\psi_{j}(X) \le (,=,\ge ) ~0,j = 1 \dots M\}
+\end{equation}
+\begin{equation}
+	\alpha_{i} \le x_{i} \le  \beta_{i} , i \in [1,N] \text{или} x_{i} \ge  0< i \in [1,N]
+\end{equation}
+\begin{equation}
+	\mathcal{P} = \{X \in \mathbb{R}^{N} : a_i \le  x_{i} \le b_{i}
+	x_{i} \ge  0,i \in [k,N]\}
+\end{equation}
+\begin{equation}
+	\mathcal{D} = \{X \in \mathbb{R}^{N}  : 
+	\psi_{j}(X) \le (,=,\ge ) ~0,j = 1 \dots M, x\in \mathcal{P}\}
+\end{equation}
+\begin{definition}[Избыточное ограничение]
+	Избыточное ограничение является следствием других ограничений
+\end{definition}
+Может оказаться так что есть целевая функция и набор ограничений. Целевая
+функция имеет экремум, но он может оказаться за пределами области
+допустимых значений. Если экстренум на границе, то некоторые
+ограничения выполняются как строгие равенства, то ресурс соответсвующий
+этому ограничению называется дефицитным, ограничение активным,
+если нет равенства ресурс недефицитным, ограниичение пассивное.
+\begin{definition}[Стационарных точка]
+	Точка в которой производной равна нулю.
+\end{definition}
+\begin{theorem}[Ферма, необходимое условие экстремума первого порядка]
+	Пусть функция задана на вещественной оси $\mathbb{R}$,
+	$x \in \mathbb{R}$  и в некоторой точке $x^{*}$ дифференцируема.
+	Если в этой точке локальный экстремум, то $f'(x^{*}) = 0$
+\end{theorem}
+Доказательство.\\
+$\delta x \ge  0$ , $f(x \pm \delta x)$ =  $f(x^{*}) \pm f'(x^{*}) \delta x + o(\delta x)$
+
+В ряд Тейлора разложили. $x^{*}$ точка локального минимума
+\[
+f(x- \delta x)  -f(x^{*}) = - f'(x^{*}) \delta x \ge 0
+.\] 
+\[
+f(x+ \delta x)  -f(x^{*}) = - f'(x^{*}) \delta x \ge 0
+.\] 
+\[
+	\begin{cases}
+		f'(x^{*}) \ge 0\\
+		f'(x^{*}) \le 0
+	\end{cases}
+.\] 
+\[
+f(x^{*}) = 0
+.\] 
+\begin{theorem}[Ферма, многомерный случай]
+	Пусть функция $f(X)$ задана на  $\mathbb{R}^{N}$. Если в точке
+	$X^{*}$ локальный экстремум, то 
+	\[
+	f'_{x_1} = 0,\dots f'_{x_{N}} = 0
+	.\] 
+\end{theorem}
+доказательство\\
+$X^{*}$ точка локального минимума функции $f(X)$
+ \[
+U_{\epsilon}(X^{*})
+.\] 
+\[
+f(X^{*}) \le  F(X)
+.\] 
+\begin{example}
+	\[
+	f(X) =  \sum_{i =1}^{N} a_i x^2_{i}
+	.\] 
+	\[
+	f'_{x_{i}} = x_{i} = 0
+	.\] 
+	\[
+	X^{*} = \begin{pmatrix} 
+	0\\
+	\dots\\
+	0
+	\end{pmatrix} 
+	.\] 
+	$X^{*}$ точка минимума , если все коэфициенты положительные,
+	максимума если отрицательны
+\end{example}
+\begin{example}
+	\[
+	f(x_1,x_2) = 5x_1^2 - 6x_2^2
+	.\] 
+	\[
+	X^{*} = (0,0)
+	.\] 
+	На множестве $\{x_1,0\}$ $f(x_1,0) = 5x_1^2$ возр
+\end{example}
+\begin{example}
+	\[
+	f(x_1,x_2) = (x_1-1)^{3} + (x_2 + 1)^2
+	.\] 
+\end{example}
+\begin{theorem}[Необходимое условие экстремума второго порядка]
+	Пусть функция $f(x)$ задана на  $\mathbb{R}$, и дважды непрерывно
+	дифференциуема в некоторой окрестности $\mathcal{U}_{\epsilon}(x^{*})$ 
+	Если в точке $x^{*}$ имеется локальный минимум (максимум),
+	вторая производная бдует неотрицательная (неположительная)
+\end{theorem}
+Доказательство.
+\[
+f(x^{*} + \delta x) = f(x^{*}) + f'(x^{*}) \delta x +
+\frac{1}{2} f''(x^{*}) ( \delta x )^2 + o((\delta x)^2)
+.\] 
+\[
+f(x^{*} + \delta x) - f(x^{*}) = \frac{1}{2} f''(x^{*}) (\delta x)^2
+.\] 
+Если $x^{*}$ точка локального минимуму , то $f''(x^{*}) \ge 0$\\
+
+Если $x^{*}$ точка локального максимума , то $f''(x^{*}) \le  0$
+\begin{definition}[Матрица Гессе]
+	\begin{equation}
+		H_{ij}(X) = (f''_{x_{i} x_{j}})
+	\end{equation}
+\end{definition}
+\begin{definition}
+	Квадрантная матрица называется положительно определеннойб
+	положительно полоопределенной,
+	отрицательно определенной,
+	отцательно полуопределенной
+	\[
+	Q(X) = X A X'
+	.\] 
+	$Q>0,Q\ge 0,<0,Q\le 0$
+\end{definition}
+\begin{theorem}[Критерий Сильвестра]
+	\begin{enumerate}
+		\item Если все угловые миноры положительны положительно определенные
+		\item Кс
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[Необходимое условие экстренума второго порядка]
+	$f(X)$ задана на  $\mathbb{R}^{N}$, дважды непрерывно дифференцируема
+	в некоторой области $U_{\epsilon}(X^{*})$ 
+	если в точке $X^{*}$ имеет локальный минимум (максимум),
+	то вычисленная в эттой точке матрица гессе неотрицательно (неположительно определена)
+\end{theorem}
+\begin{theorem}
+	Рассмотрим функцию $f(x), x\in \mathbb{R}$ предположм, что
+	$x^{*}$ стационарная точка, $f'(x^{*}) = 0$ в окрестности
+	которой существует непрерывная производная
+	второго порядка
+	если в тчоке $x^{*}$ выполняется условие
+	\begin{enumerate}
+		\item $f''(x^{*}) > 0,x^{*}$ точка локального минимума
+		\item $f''(x^{*}) < 0, x^{*}$ точка локального максимума
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}
+
+\end{theorem}
+\begin{definition}
+	Для функции $f(X)$ определенной на  $\mathbb{R}^{N}$ 
+	вектор единичной длины задает
+	\begin{enumerate}
+		\item направление убывания $w^{\downarrow} \in \mathbb{R}^{N}$
+		\item направление возрастания $w^{\uparrow} \in \mathbb{R}^{N}$
+	\end{enumerate}
+	если при всех достаточно малх $\alpha > 0$ выполняется неравенство
+	\begin{enumerate}
+		\item 
+
+	 \[
+	f(X' + a w^{\downarrow}) < f(X')
+	.\] 
+\item  $f(X' + \alpha w^{\uparrow} > f(X')$
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	Пусть фукнция $f(X)$ дифференцируема в точке  $X' \in \mathbb{R}^{N}$
+	 \begin{enumerate}
+	 	\item Если вектор $\vec{w} \in \mathbb{R}^{N}$ удовлетворяет 
+			условию
+			\[
+			grad~f(X') \vec{w} < > 0
+			.\] 
+		то $\vec{w}$ принадлежиет множеству направний убываний
+	 \end{enumerate}
+\end{theorem}
+\[
+f(X' + \alpha \vec{w}) = f(X') + grad ~ f(X')* a \vec{w} + o(\alpha)
+.\] 
+\section{Классическая задача условной оптимизации}
+\begin{definition}
+	Задача классическая, если ограничения заданы равенством.
+\end{definition}
+\begin{equation}
+	X^{*} : f(X^{*}) = \text{extr}_{X \in \mathcal{D}} f(X)
+\end{equation}
+\begin{definition}
+	Вектор $v \in\mathbb{R}^{N}$ задает \textbf{возможное направление}
+	в точке $X \in \mathcal{D}$ на множестве возможных значений,
+	если при всех достаточно малых $\alpha > 0$ точка  $X' = X + \alpha v$ принадлежит  $\mathcal{D}$,$X' \in \mathcal{D}$
+
+
+	Множество возможных направлений $\mathcal{V}_{X} \subseteq \mathbb{R}^{N}$
+\end{definition}
+\begin{theorem}
+	Если $X^{*}$ является точкой локального минимума (максимума), то
+	\begin{equation}
+		\label{eq}
+		\mathcal{W}^{\uparrow (\downarrow)} \cap \mathcal{V}_{X} = \emptyset
+	\end{equation}
+\end{theorem}
+Пусть \ref{eq} неверна, $\mathcal{W}^{\uparrow} \cap \mathcal{V}_{X} \neq 0$
+\[
+\exists  R \in W^{\uparrow}
+.\] 
+\[
+f(X^{*} + \alpha r) > f(X^{*}) , X^{*} + \alpha r \in \mathcal{D}
+.\] 
+Невозможно смещение из точки локального мин которое приводит к уменьшению целевой функции и не выходит за пределы целевой области
+\begin{theorem}[Вейерштрасса]
+	Пусть $\mathcal{D}$ замкунутое ограниченное множество 
+	и $f(X)$ непрерывная функция. Тогда на  $\mathcal{D}$ 
+	существуют точки глобального минимума и максимума
+\end{theorem}
+Если внутренних точек локального экстремума нет, то экстремальное
+значение может достигаться только на границе области.
+\begin{lemma}
+	Если область допустимых 
+	значений определямая системо равенств, содержит
+	некоторую точку $X'$ и ее окретсность  $U_{\epsilon}(X'),X'\in \mathcal{D}, U_{\epsilon}(X') \in \mathcal{D}$, nj
+	\[
+	M < n
+	.\] 
+	При этом функции задающие ограничения дифференцируемаые
+\end{lemma}
+\[
+	\psi(X' + \delta X) = \psi_{j} (X') + \text{grad} \psi_{j}(X') \delta X + o(||\delta X||)
+.\] 
+\[
+\psi(X' + \delta X) = \psi(X') = 0
+.\] 
+\[
+	\text{grad} \psi_{j} * \delta X = 0, j = 1 \dots M
+.\] 
+Это линейная система уравнений относительно $\delta X$ 
+Это меньще $N < M$
+\begin{lemma}
+	Предположим, что область допустимых значений, содержит
+	хотя бы одну точку, если $M < N$ и якобиан  $J(X')$ 
+	составленный из функций  $\psi_{J}(X)$ имеет  в этой точке 
+	ранг, равный $M$ то область Допустимых значений 
+	 $\mathcal{D}$ вместе со своей точкой $X'$ содержит некоторую 
+	 непустую окрестность
+\end{lemma}
+\[
+	\psi(X' + \delta X) = grad~\psi_{j}(X') * \delta X + o(||\delta X||)
+.\] 
+В классической задаче оптимизации число ограничений строго меньше
+числа переменных
+\begin{definition}
+	Допустимой окрестностью $U_{\epsilon}^{D}(X)$ 
+	точки $X$ называется ее окрестность целиком содержащаяся в допустимом множестве
+	 $\mathcal{D}$
+\end{definition}
+\section{Метод множителей Лагранжа}
+\begin{definition}
+	\begin{equation}
+		L(\Lambda,\lambda_0,X) = \lambda_0 f(X) +
+		\sum_{j = 1}^{M} \lambda_{j} \psi_{j}(X)
+	\end{equation}
+	\begin{equation}
+		L(\Lambda,\lambda_0,X) = \lambda_0 f(X) - \sum_{j}^{M} \lambda_{j} \psi_{j}(X)
+	\end{equation}
+\end{definition}
+\begin{theorem}[правило множителей Лагранжа]
+	Пусть в окрестности $U_{\epsilon}(X^{*}) \subset \mathcal{D}$ 
+	точки $X^{*} \in \mathbb{R}^{N}$ 
+	\begin{enumerate}
+		\item функции $f(X)$ ,  $\psi(X)$ , $j = 1 \dots M$ 
+			непрерывно диццеренцируемы
+		\item hранг матрцы Якоби в точке  $X^{*}$ равен $M$
+	\end{enumerate}
+	Если $X^{*}$ точка локального оптимума задачи то 
+	существуют такие неравные одновремено нулю
+	вектор $\Lambda^{*}$ и параметр $\lambda^{*}_{0}$ 
+	что точка $(\Lambda^{*},j_1,X^{*}$ является стационарной точки задачи на
+	безусловный экстремум
+\end{theorem}
+Пусть $X^{*} \in \mathcal{D}$ точка эстремума задачи
+$X^{*}$ стационарная точка Функции Лагранжа, все частные производные равны 0
+Нужно рассмотреть 2 случая $\lambda_0$ = 0, $\lambda_0 = 1$	,
+$\lambda_0 \neq 0$ система содержит $N+M$ неизвестных,  $\lambda_0 = 0$ $\Lambda=0$ задачи не имеет смысла
+
+Найдем вторую производную функции Лагранжа
+\begin{equation}
+	H(\Lambda,X) =
+	\begin{pmatrix} 
+		0 & J(X) \\
+		J^{T}(X) & L''_{XX}(\Lambda,X)
+	\end{pmatrix} 
+\end{equation}
+\begin{theorem}[Необходимое услове экстремума второго порядка]
+	Пусть в окрестности $U_{\epsilon}(X^{*}) \subset \mathcal{D}$ 
+	\begin{enumerate}
+		\item функции $f(X), \psi_{j}(X), j = 1 \dots M$ дважды
+			непрерывно дифференцируемы
+		\item Ранг матрицы Якоби $J$ равен  $M$
+	\end{enumerate}
+	Тогда $X^{*}$
+\end{theorem}
+\end{document}
+ 

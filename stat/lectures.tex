@@ -1,0 +1,210 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\title{Матстата}
+\author{}
+\date{}
+\begin{document}
+	\maketitle
+	\section{}
+	Открыть старый канспект, повторить распределения, несобственные интегралы.
+	\section{Отступление матан. Гамма-функция Эйлера}
+	\begin{eqnarray}
+		\Gamma(y) = \int\limits_{0}^{+\infty}  t^{y-1}e^{-t}dt,\\ f(t) = t^{y-1}e^{-t}
+	\end{eqnarray}
+	Рассмотрим $t^{y+1} e^{-t} = \frac{t^{y+1}}{et} \to 0,$ при $t \to + \infty$  $\implies$  $\exists  A: \forall t \ge  A ~ t^{y+1} e^{-t} < 1 \implies f(t) = t^{y-1} e^{-t} < \frac{1}{t^2}$
+	\[
+	\int\limits_{0}^{+\infty}  f(t) dt = \int\limits_{0}^{A} f(t)  dt + \int\limits_{A}^{+\infty}  f(t) dt = I_1 + I_2
+	.\] 
+	$I_2$ сходится при $\forall  y \in \mathbb{R}$, по первому признаку сравнения с $\int\limits_{A}^{+\infty} g(t) dt , g(t) = \frac{1}{tst}  $
+	
+	Рассмотрим $I_1$  при $y < 1$ это несобственный интеграл
+	 \[
+		 t^{y-1}e^{-t}< t^{y-1}
+	.\] 
+	$\int\limits_{0}^{A} \frac{dt}{t^{1- y}}  $ сходится при $y > 0$ ,  $1- y < 1$
+	
+	\textbf{Вывод}. При $y>0$  $\Gamma(y) =  \int\limits_{0}^{+\infty} t^{y-1}e^{-1} dt $
+	
+	Без доказательства для $n \in \mathbb{N}$
+	\begin{equation}
+		\Gamma(n + \frac{1}{2}) = 2^{-n} \sqrt{\pi} (2n -1)!!
+	\end{equation}
+	\begin{equation}
+		\Gamma(y+1) \int\limits_{0}^{+\infty}  t^{y}e^{-t}dt
+		- \int\limits_{0}^{+\infty}  t^{y} d e^{-t}=
+		-t^{y}e^{-t} \mid_{0}^{+\infty} + y \int\limits_{0}^{+\infty} y^{-1} e^{-t} dt = 0 + y \Gamma(y)
+	\end{equation}
+	\begin{equation}
+		\Gamma(y+1) = y \Gamma(y)
+	\end{equation}
+\begin{eqnarray}
+	\Gamma(1) = \int\limits_{0}^{+\infty}  e^{-t} dt = -e^{-t}\mid_{0}^{+\infty}\\
+	\Gamma(2) = 1*\Gamma(1) =1\\
+	\Gamma(3) = 2*\Gamma(2) = 2\\
+	\Gamma(n+1) = n!
+\end{eqnarray}
+Можно показать, что Гамма функция дифференцируема
+\begin{equation}
+		\Gamma(\frac{1}{2}) = -\frac{1}{2}\Gamma(-\frac{1}{2})
+		\implies \Gamma(-\frac{1}{2}) = -2 \Gamma(\frac{1}{2})
+\end{equation}
+Но 
+\begin{equation}
+	\Gamma(0) = + \infty , ~ \int\limits_{0}^{A}   t^{-1}e^{-t} = \int\limits_{0}^{A}  \frac{dt}{t^{et}}
+\end{equation}
+По второму признаку сравнения это расходится
+\[
+\lim_{t \to 0+0}  \frac{1}{te^{t}} : \frac{1}{t} = \lim_{t \to 0+0} 1 \in (0;+\infty)
+.\] 
+\textbf{Вывод.} $\Gamma$ функцию можно продолжить на  $\mathbb{R}^{-}$ ккроме целых точек
+\begin{equation}
+	C_{n}^{k} = \frac{n!}{k! (n-k)!} = \frac{\Gamma(n+1)}{\Gamma(k+1)\Gamma(n - k + 1)}
+\end{equation}
+Мы расшили понтие числа сочений
+ \begin{equation}
+ 	C_{\alpha}^{\beta} = 
+	\frac{\Gamma(\alpha + 1)}{\Gamma(\beta + 1) \Gamma(\alpha -\beta + 1)} ,  \alpha,\beta \in \mathbb{R} \setminus \mathbb{Z}^{-}
+ \end{equation}
+ \section{Закон распределения Лапласа (двойное экспонициальное распределение)}
+ Он применяетс для моделирования обработки сигналов, в моделировании биологических процессов, экономике и финансах
+
+ Это распределние НСВ $X$ с плотностью
+  \begin{equation}
+ 	f(x) = \frac{\lambda}{2} e^{-\lambda |x|}, x \in \mathbb{R},\lambda > 0
+ \end{equation}
+ \begin{equation}
+ 	F(x) =
+	\begin{cases}
+		\frac{1}{2}e^{\lambda x} , x \le 0\\
+		1 - \frac{1}{2}e^{-\lambda x}
+	\end{cases}
+ \end{equation}
+ \begin{equation}
+	 x\le  0,
+ 	F(x) = \int\limits_{-\infty}^{x}   \frac{\lambda}{2} e^{\lambda t} dt = \frac{1}{2} e^{\lambda t} \mid_{-\infty}^{x} = \frac{1}{2}(e^{\lambda x} - 0)
+ \end{equation}
+ \begin{equation}
+ 	x > 0 =  F(0)  + \int\limits_{0}^{x}
+ \end{equation}
+ из вида $f(x)$ :  $Mo(X) = Me(X) = M(X) = 0$
+ \begin{eqnarray}
+ 	D(X) = M(X^2) = 
+	\int\limits_{-\infty}^{+\infty}  x^2 f(x) dx = 
+	2 \int\limits_{-\infty}^{\infty} x^2 * \frac{\lambda}{2} e^{-\lambda x} dx = \dots = (- x^2 +\frac{2}{\lambda} x
+	+ \frac{2}{\lambda^2}) e^{-\lambda x} \mid_{0}^{+\infty}\\
+ \end{eqnarray}
+ \begin{equation}
+  = \frac{2}{\lambda^2}
+ \end{equation}
+ \section{Распредение Вейбула}
+ Это распредение имеют времена безотказной работы технческих устройтв.
+ В таких значениях важной характеристикой является интенсивность отказа $k(t)$ 
+  \begin{equation}
+	  k(t) = - \frac{ [P(X \ge  t)]'}{P(X \ge  t)}, k(t) = \frac{f(t)}{1 - F(t)}
+ \end{equation}
+ Получили диффур. Это УРП, решаем элементарно
+ \begin{eqnarray}
+ 	k(t) = \frac{y'}{1 - y}\\
+	k(t) dt = \frac{dt}{1 -y}\\
+	-\int k(t)dt + C = \ln{( 1-y )}\\
+	y = 1 - e^{-\int k(t) dt + C}\\
+	y(0) = 0 \implies y = 1 -e^{-\int\limits_{0}^{x} k(t)dt }
+ \end{eqnarray}
+ Во многих случаях график $k(t)$ имеет следущий вид
+  \begin{enumerate}
+ 	\item период обкатки
+	\item период нормальной эксплуатации
+	\item период старения
+ \end{enumerate}
+ Рассмотрим класс степенных зависимостей $k(t)=\lambda \alpha t^{`-1`}$ где $\lambda > 0 , \alpha > 0$ некоторые числовые параметры.
+ Периодам 1,2,3 отвечают  $\alpha < 1,\alpha =1, \alpha>1$ соответственно
+
+ Функция распеделения
+ \begin{equation}
+ 	F_{X}(x) = 1 - e^{- \frac{0}{x} \lambda \alpha t^{\alpha - 1} dt} = 1- e^{\lambda t^{\alpha}} \mid_{0}^{x} = 1 - e^{-\lambda x^{\alpha}}
+ \end{equation}
+ Плотность
+ \begin{equation}
+ 	f_{X}(x) (F_{X}(x))' = \lambda \alpha x^{\alpha - 1} e^{-\lambda x^{\alpha}}
+ \end{equation}
+ При $a = 1$ получим  $E(\lambda)$ , при  $\alpha = 2$ получим распределениие Рэлея  $f(x) = 2\lambda x e^{-\lambda x^2}$
+ \subsection{Числовые характеристики Распределения Вейбулла}
+ \begin{equation}
+ 	M(X) = \lambda^{-\frac{1}{\alpha}} \Gamma(1+  \frac{1}{\alpha})
+ \end{equation}
+ \begin{equation}
+ 	M(X) = \int\limits_{0}^{+\infty}  x \alpha * \lambda x^{\alpha - 1} e^{-\lambda x^{\alpha}} dx = \int\limits_{0}^{+\infty} \lambda^{-\frac{1}{\alpha}} t^{\frac{1}{\alpha}} e^{-t} dt = \lambda^{-\frac{1}{\alpha}} \Gamma(1 + \frac{1}{\alpha})
+ \end{equation}
+ \begin{equation}
+	 M(X^2) = \lambda^{-\frac{-2}{\alpha}} \Gamma(1 + \frac{2}{\alpha}) \implies D(X) = \lambda^{-\frac{2}{\alpha}}  (
+	 	\Gamma(1 + \frac{2}{\alpha}) - \Gamma^2(1 + \frac{1}{\alpha})
+	 )
+ \end{equation}
+ \begin{equation}
+	 \text{Me} (X) = (\frac{1}{\lambda} \ln{2}) ^{\frac{1}{\alpha}}
+ \end{equation}
+ \begin{equation}
+ 	Mo(X) = 
+	\begin{cases}
+		0, \alpha \le  1\\
+		(\frac{\alpha - 1}{\lambda \alpha})^{\frac{1}{\alpha}}, \alpha > 1
+	\end{cases}
+	f'(x )  = 0
+ \end{equation}
+ \section{Гамма-распеделение}
+ Оно используется для описание времен безотказной работы различных 
+ технических устройств
+
+ Его имеет НСВ $X = \gamma(a,b)$ с плотностью
+  \begin{equation}
+ 	f(x) =
+	\begin{cases}
+		\frac{b^{a}}{\Gamma(a)} x^{a - 1} e^{-b x} ,x>0\\
+		0 , x \le  0
+	\end{cases}
+ \end{equation}
+ где $a > 0$ параметр формы,  $b > 0$ параметр масштаба
+ \subsection{Свойства}
+  \begin{enumerate}
+ 	\item $b * \gamma(a,b) = \gamma(a,1)$ 
+	\[
+	f_{\alpha X + \beta}(x) = f_{X}( \frac{x -  b}{a} )*\frac{1}{|a|} \implies
+	.\] 
+	\[
+		f_{b \gamma(a,b)}(x) = f_{\gamma_{a,b}}(\frac{x}{b})\frac{1}{b} = \frac{b^{a}}{\Gamma(a)} \frac{x^{a -1}}{b^{a-1} }*e^{-b \frac{x}{b}} * \frac{1}{b} = \frac{1}{\Gamma(a)} x^{\alpha-1}e^{-x} = f_{\gamma(a,1)}(x)
+	.\] 
+\item Если случайные величины независимы
+\item $a = \frac{m}{2},b = \frac{1}{2}$ получм $\chi^{2}_{m}$,$a =1$ получим экспонициальное
+ \end{enumerate}
+ \subsection{Функция распределение}
+ \begin{equation}
+ 	F_{\gamma(a,b)}) (x) = \frac{1}{\Gamma(a)} \int\limits_{0}^{bx}   \tau^{a - 1} e^{-\tau}
+ \end{equation}
+ \subsection{Числовые Характеристики}
+ \begin{equation}
+ 	M(\gamma(a,b)) = \frac{b^{a}}{\Gamma(a)} \int\limits_{0}^{+\infty} x * x^{a-1}  e^{-bx} dx =_{t=bx} \frac{b^{a}}{\Gamma(a)}\int\limits_{0}^{+\infty}   \frac{t^{a}}{b^{a}} e^{-t} * \frac{dt}{b} = \frac{\Gamma(a+1)}{b\Gamma(a)} = \frac{a \Gamma(a)}{b \Gamma(a)}= \frac{a}{b}
+ \end{equation}
+ \begin{equation}
+ 	D(\gamma(a,b)) = \frac{a(a+1)}{b^{2}} - (\frac{a}{b})^{2}=
+	\frac{a}{b^2}
+ \end{equation}
+ \begin{equation}
+ 	Mo = \frac{a - 1}{b} ,a\ge 1
+ \end{equation}
+ \begin{equation}
+ 	f'(x) = 0
+ \end{equation}
+\end{document}

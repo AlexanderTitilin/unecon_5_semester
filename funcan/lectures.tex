@@ -1,0 +1,179 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}[definition]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\DeclareMathOperator{\intt}{Int}
+\title{}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\section{Учебники}
+\begin{enumerate}
+	\item Колмогоров
+	\item Люстерник, Соболев (Краткий Курс Функционального Анализа)
+	\item Вайнберг Функциональный Анализ
+	\item Бахарев
+\end{enumerate}
+\section{Метрические пространства}
+Пусть есть некоторое множество $M$,
+мы хотим ввести предел (непрерывность, производную  и тд) на этом множестве.
+
+Надо ввести расстояние (метрику).
+\begin{definition}[Метрика]
+	Метрикой $\rho$ на множестве  $M$ 
+	называется отображение  $\rho : M \times M \to [0,+ \infty)$
+	удовлетворяющее следущим свойствам (аксиомам):
+	 \begin{enumerate}
+		\item $\rho(x,y) \ge 0, \rho(x,u) = 0 \iff x = y$
+		\item $\rho(x,y) = \rho(y,x)$
+		\item  $\rho(x,y) \le \rho(x,y) + \rho(y,z)$
+	\end{enumerate}
+	Пара $(M,\rho)$ называется метрическим пространством.
+\end{definition}
+\begin{example}
+	\begin{equation}
+		M = \mathbb{R}, \rho(x,y) = |x- y|
+	\end{equation}
+\end{example}
+\begin{example}
+	\begin{equation}
+		M = \mathbb{R}^{n}, ||x|| =  \sqrt{\sum_{i=1}^{n}x_{i}^2} 
+	\end{equation}
+\end{example}
+\begin{example}[Транспортная метрика (Матхэтеннская)]
+	\begin{equation}
+		\rho(A,B) = \min \text{~ ломанная соединяющая } A, B
+	\end{equation}
+\end{example}
+\begin{example}
+	$M$ -- город
+	 \begin{equation}
+		 \rho(A,B) = \min \text{ время за которое можно добраться~} A \to B
+	\end{equation}
+\end{example}
+\begin{example}
+	$M$ -- множество всех непрерывных функций $f(t): [0,1] \to \mathbb{R}$ , $M = C([0,1])$ 
+	\begin{equation}
+		\rho(f_1,f_2) = \max_{t \in[0,1]} |f_1(t) - f_2(t)|
+	\end{equation}
+	$\max \exists $ по теореме Вейрштрасса
+	\begin{equation}
+		(M,\rho) = C[0,1]
+	\end{equation}
+	Это одно из \textbf{важнейших} пространств функционального анализа
+\end{example}
+\begin{example}
+	Обозначим $M =  \{\text{Множество всех последовательностей}  \{x_{n}\} = (x_1,x_2,\dots,x_{n},\dots) , x_{k} \in \mathbb{R}\}$
+	\begin{equation}
+		\rho(\{x_{n}\},\{y_{n}\}) = 
+		\sum_{k=1}^{\infty} \frac{1}{2^{k}} \frac{|x_{k} - y_{k}|}{1 + |x_{k} - y_{k}|}
+	\end{equation}
+	\begin{enumerate}
+		\item Ряд сходится для любых последовательностей
+			так как мажорируется рядом $\sum_{k=1}^{\infty} \frac{1}{2^{k}} = 1$
+		\item Докажем, что выполняется неравентство
+			треугольника
+			
+			Рассмотрим вспогательную функцию
+			\begin{equation}
+				f(t) = \frac{t}{1  +t} : [0,+\infty] \to \mathbb{R}
+			\end{equation}
+
+			Ясно что $f(t) = 1 -\frac{1}{1+t}$ 
+			данная функция возрастаетс так как  $\frac{1}{1+t}$ убывает. Отсюда следует, что
+			\begin{equation}
+				\frac{|a+b|}{1 +|a+b|} 
+				\le \frac{|a| + |b|}{1 + |a| + |b|} =
+				\frac{|a|}{1+|a|+|b|} + \frac{|b|}{1 +|a| + |b|}\le  \frac{|a|}{1+|a|} +\frac{|b|}{1 + |b|}
+			\end{equation}
+			\begin{equation}
+				f(|a+b|) \le  f(|a| +|b|) \le  f(|a|) + f(|b|)
+			\end{equation}
+			Мы доказали неравенство треугольника для
+			всех членов ряда
+
+			Рассмотим $\{z\}$
+
+			 \begin{equation}
+				\frac{|x_{n} - y_{n}|}{1+|x_{n} - y_{n}|} = \frac{|x_{n} - z_{n} + z_{n}  -y_{n}|}{1 + |x_{n} - z_{n} + z_{n} - y_{n}|}\le 
+				\frac{|x_{n} - z_{n}|}{1+|x_{n}-z_{n}|} + \frac{|z_{n} - y_{n}|}{1+|z_{n} -y_{n}|}
+			\end{equation}
+			\begin{equation}
+				\rho(x_{n},y_{n}) \le 
+				\rho(x_{n},z_{n}) + \rho(z_{n},y_{n})
+			\end{equation}
+	\end{enumerate}
+\end{example}
+Понятие метрики позволяет на метрическом пространстве $(M,\rho)$
+вводить <<старые>> понятия из анализа.
+ \begin{enumerate}
+	 \item Открытый шар радиуса $r$ с центром в точке $x_0$
+		 \begin{equation}
+		 	B_{r}(x_0) := 
+			\{x \in M \mid \rho(x,x_0) < r\}
+		 \end{equation}
+	
+	 \item Замкнутый шар радиуса $r$ с центром в точке $x_0$
+		 \begin{equation}
+		 	\overline{B}_{r}(x_0) := 
+			\{x \in M \mid \rho(x,x_0) \le  r\}
+		 \end{equation}
+	\item $X \subset M$ назывется открытым, если  $\forall x \in X ~\exists B_{r}(x) \subset X$ 
+	\item Множество $X$ называется замкнутым если дополнение к нему ($M \setminus X$) является открытым
+	\item Точка $x_0$ называется внутренней точкой $X$, если $\exists  B_{r}(x_{0} \subset X$ ,  $X$ открытое  $\iff$ любая точка внутренняя
+	\item $x_0$ называется предельной точкой множества $X$,
+		если  $\forall  r > 0$ $B_{r}(x_0) \cap X$ содержит
+		бесконечно много точек из $X$
+        \item $x_0$ называется изолированной точкой множества
+		$X$  если  $\exists  B_{r}(x_0): B_{r}(x_0) \cap X = \{x_0\}$
+	Изолированная точка не может быть предельной
+	\item Точка $x_0$ называется внешней для множетсва $X$,
+		если существует такой шар с центром в  $x_0$,
+		что его пересечение с $X$ пусто
+	\item Точка $x_0$ называется граничной точкой множества $X$ 
+		если  $\forall r$ в шаре $B_{r}(x_0)$ содержатся
+		точки как $x \in X$, так и $x \notin X$
+\end{enumerate}
+Коллекция фактов (без доказательсва, упражнения, дз)
+\begin{enumerate}
+	\item Другое определение замкнутоcти.  $X$ замкнуто  $\iff$ содержит все свои предельные точки
+	\item Добавление к  $X$ всех его предельных точек 
+		называется пополнением  $X$. Полученное множество
+		обозначат  $\overline{X}$
+		 \begin{equation}
+			 \overline{X} = X \cup \{\text{~Пределные точки~}\}
+		 \end{equation}
+	\item $\overline{X}$ замкнутое
+	\item $X$ замкнутое  $\iff$  $X = \overline{X}$
+	 \item Принцим трихотомии (деления на 3)
+		 $\forall $ множества $X$ и  $\forall  x \in M$ 
+		 возможен только один из трех вариантов
+		 \begin{enumerate}
+		 	\item $x$ внутренняя точка $x \in \intt X$
+			\item  $x$ граничная точка $x \in \delta X$
+			\item  $x$ внешняя точка
+		 \end{enumerate}
+		Верны формулы
+		\begin{enumerate}
+			\item $\overline{X} = X \cup \delta X$
+			 \item $\overline{X_1 \cup X_2} = \overline{X_1} \cup \overline{X_2}$
+		\item Объединение любого числа открытых множеств
+		\end{enumerate}
+\end{enumerate}
+\end{document}
+
