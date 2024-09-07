@@ -1,0 +1,735 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{example}{Пример}
+\newtheorem{definiiton}{Определение}
+\newtheorem{lemma}{Лемма}
+\newtheorem{corollary}{Следствие}[theorem]
+\DeclareMathOperator{\extr}{extr}
+\DeclareMathOperator{\grad}{\textbf{grad}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rank}{Rank}
+\newcommand{\pa}[2]{ \frac{\partial #1}{\partial #2}}
+\newcommand{\bm}[1]{ \left.#1\right|}
+\title{}
+\author{}
+\date{}
+\begin{document}
+	\maketitle
+	\section{Основные понятия теории оптимизации}
+	\begin{definiiton}[Окрестность]
+		Множество $U_{\epsilon}(X)$ называется
+		окрестностью точки $X \in \mathbb{R}^{N}$,
+		если существует $\epsilon >0$
+		для любых $X' \in U_{\epsilon}(X)$ 
+		справедливо неравенство 
+		\begin{equation}
+			0 \le  || X-X'|| =|| \delta X|| =
+			\sqrt{\sum_{i=1}^{N} (x_{i} - x'_{i})^2} 
+		\end{equation}
+		\begin{equation}
+			\delta X = (x_1-x'_{1}, \dots, x_{n} -x'_{n})
+		\end{equation}
+	\end{definiiton}
+	\begin{definiiton}[Локалный эстремум]
+	Точка $X^{*} \in D$ называется точкой локального
+	экстремума (локального минимума или максимума),
+	если существует $U_{\epsilon}(X^{*})$ такая что в которой выполняется неравенство
+	\begin{equation}
+		f(X^{*}) \le f(X) \text{~или~} f(X^{*}) \ge  f(X)
+	\end{equation}
+	\end{definiiton}
+	\section{Постановка задачи оптимизации}
+	Пусть даны:
+	\begin{enumerate}
+		\item функция $f(X)$ c областью определения
+			 $D_{f},X \in D_{f} \subseteq \mathbb{R}^{N}$
+		 \item множество $D$
+	\end{enumerate}
+	Требуется найти $X^{*} \in D$ в которой функция достигает
+	экстремального значения.
+	\begin{equation}
+		X^{*}: f(X^{*}) = \extr_{(X \in D_{f}) \cap (X \in D)} f(X)
+	\end{equation}
+	\begin{enumerate}
+		\item Если $D_{f} = D = \mathbb{R}^{N}$ такая задача
+			называется задачей на безусловный экстремум.
+		\item Если $D_{f} \cap D \neq \emptyset$ и $D \subset \mathbb{R}^{N}$ или $D_{f} \subset \mathbb{R}^{N}$ то это задача на условный экстремум
+		\item Если $D_{f} \cap D = \emptyset$ экстремум не существует
+	\end{enumerate}
+	Обычно задается не множесто $D$ ,а система
+	ограничений, его задающая  
+	\begin{equation}
+		\psi_{j}(X) \le ,=,\ge 0,j = 1 \dots M
+	\end{equation}
+	\begin{equation}
+		D = \{X \in \mathbb{R}^{N} \mid  \psi_{j}(X) \le ,=,\ge 0, j = 1 \dots M\}
+	\end{equation}
+	\section{Условия существования безусловного экстремума}
+	\begin{enumerate}
+		\item \textbf{Необходимые условия} --
+			условия, которые вытекают из того факта, 
+			что рассматриваемая точка есть экстремум
+		\item \textbf{ Достаточные условия } --
+			условия, из которых следует, что рассматриваемая точка экстремум
+	\end{enumerate}
+	\begin{theorem}[Ферма одномерный случай]
+		\label{ferm}
+		Пусть функция $f$ задана на
+		 $\mathbb{R}$, и в некоторой точке
+		 дифференцируема.
+		 Если эта точка имеет в точке $x^{*}$ локальныйэкстремум,
+		 то $f'(x^{*}) = 0$
+	\end{theorem}
+	\begin{proof}
+		Раздлжим в ряд Тейлора в форме Пеано
+		\begin{equation}
+			f(x^{*} + \delta x) = f(x^{*}) + f'(x^{*}) \delta x + o(\delta x)
+		\end{equation}
+		\begin{equation}
+			f(x^{*} - \delta x) = f(x^{*}) - f'(x^{*}) \delta x + o(\delta x)
+		\end{equation}
+		\begin{equation}
+			\begin{cases}
+			f'(x^{*}) \delta x = f(x^{*} + \delta x ) - f(x^{*})\\
+				-f'(x^{*}) \delta x = f(x^{*} - \delta x) - f(x^{*})
+			\end{cases}
+		\end{equation}
+	\end{proof}
+	\begin{theorem}[Необходимое услове экстремума первого порядка]
+	Пусть функция $f(X)$ задана на  $\mathbb{R}^{N}$, $X \in \mathbb{R}^{N}$,дифференцирума , $f(X^{*}) = \extr_{X \in \mathbb{R}^{N}} f(X)$, то $\grad f = 0$
+	\end{theorem}
+	\begin{proof}
+		Допусти, что точка $X^{*}$ точка локального минимума.
+		Для произвольной переменной $x^{*}_{i}$ рассмотрим
+		$f$ как  $f(x_1^{*},x_2^{*},\dots,x_{i},\dots,x^{*}_{N})$ может рассматриваться как в окрестности $U_{\epsilon}(X^{*})$
+		 как функция одной переменной с минимумом в точке
+		 $x^{*}_{i}$, тогда $f'_{x_{i}}(x^{*}_{i}) = 0$ по
+		 теореме \ref{ferm}
+	\end{proof}
+	\begin{definiiton}
+		$X$ стационарная точка, если  $\grad f(X) = 0$
+	\end{definiiton}
+	Точки локального экстремума нужно искать среди стационарных точек
+	\begin{example}
+		Найти стационарные точки функции
+		\begin{equation}
+			f(X) = \sum_{i = 1}^{N} a_i x_{i}^2
+		\end{equation}
+		\begin{equation}
+			f'_{x_{i}} = 2a_{i} x_{i} = 0
+		\end{equation}
+		Такая система уравнений, имеет одно решение $X^{*}=  (0,0,\dots,0)$
+		 \begin{enumerate}
+			\item $\forall a_{i} \ge 0$ $X^{*}$точка минимума
+			\item $\forall a_{i} \le 0$ $X^{*}$ точка максимума
+		\end{enumerate}
+	\end{example}
+	\begin{example}
+		\begin{equation}
+			f(X) = 5x_1^{2} - 6x_2^{2}
+		\end{equation}
+	\end{example}
+	\begin{equation}
+		\begin{cases}
+			f'_{x_1} = 10x_1 = 0\\
+			f'_{x_2} = -12 x_2 = 0
+		\end{cases}
+	\end{equation}
+	Стационарная точка $(0,0)$
+	 \begin{equation}
+		f(x_1,0) = 5x^2
+	\end{equation}
+	Возрастает
+	\begin{equation}
+		f(0,x_2) = -6x^2
+	\end{equation}
+	Убывает.
+
+	$X^{*}$ -- седловая точка
+	\begin{theorem}[Необходимое условие экстремума второго порядка]
+		Пусть функция $f$ задана на  $\mathbb{R}$, дважды непрерывно дифференцируема,
+		тогда
+		\begin{enumerate}
+			\item $f(x^{*}) = \min f(x) \implies f''(x^{*}) \ge  0$
+			\item $f(x^{*}) = \min f(x) \implies f''(x^{*}) \le  0$
+		\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Разложим функцию в ряд Тейлора с остаточным членом в форме Пеано
+	\begin{equation}
+		f(x^{*} + \delta x) = f(x^{*}) + f'(x^{*}) \delta x + \frac{1}{2} f''(x^{*}) (\delta x)^2 + o((\delta x) ^2)
+	\end{equation}
+	Так как $x^{*}$ точка локального минимума (максимума)
+	\begin{equation}
+		f(x^{*} + \delta x) = f(x^{*}) + \frac{1}{2} f''(x^{*}) ( \delta x )^2
+	\end{equation}
+	\begin{equation}
+		\frac{1}{2} f''(x^{*}) (\delta x) ^2 = f(x^{*} + \delta x) - f(x^{*})
+	\end{equation}
+	\begin{enumerate}
+		\item $f(x^{*}) \min \implies f(x^{*} + \delta x) -f(x^{*}) \ge 0$ 
+		\item $f(x^{*}) \max \implies f(x^{*} + \delta x) -f(x^{*}) \le  0$
+	\end{enumerate}
+\end{proof}
+\begin{definiiton}[матрица Гессе]
+	\begin{equation}
+		H(X) = (f''_{x_{i} x_{j}})_{ij}
+	\end{equation}
+	Это квадратная симметричная матрица
+\end{definiiton}
+\begin{definiiton}
+	Квадратная матрица называется
+	\begin{enumerate}
+		\item Положительно определенной
+			если $Q(X) = X A X^{T} > 0$
+		\item Положительно полуопределенной
+			если $Q(X) = X A X^{T} \ge  0$
+		\item Отрицательно определенной
+			если $Q(X) = X A X^{T} <  0$
+		\item Отрицательно полуопределенной
+			если $Q(X) = X A X^{T} \le   0$
+	Для любого $X = (x_1,\dots,x_{N})$
+	\end{enumerate}
+\end{definiiton}
+\begin{definiiton}[Угловые (ведущие) миноры]
+	$M_{i}(A)$ определители $i$ порядка расположенные вдоль
+	главной диагонали  $A$ в первых  $i$ строках и столбцах с
+	одинаковыми ноерами
+\end{definiiton}
+\begin{definiiton}[Главные миноры]
+	$m_{i}$ матрицы A называют определители $i$ порядка
+	,расположенные вдоль главной диагонали в  $i$ строках и столбцах, полученных при вычеркивании из  $A$ строк и столбцов с одними номерами
+\end{definiiton}
+\begin{definiiton}[Условия Сильвестра]
+	 \begin{enumerate}
+		\item Матрица $A$ положительно определенная  когда
+			все угловые миноры положительны
+		\item Матрица $A$ является отрицательно определнной, когда  $\sgn M_{K}(A) = (-1)^{k}$
+		\item Матрица $A$ является положительно полуопределенной, когда она вырожденная и ее главные миноры  $\ge 0$
+		\item Матрица $A$ является отрицательно полуопределенной, когда значение  $m_{k}(A)$ либо равно 0 либо $\sgn(m_{k}) = (-1)^{k}$
+	\end{enumerate}
+\end{definiiton}
+\begin{theorem}[Необходимое условие экстремума второго порядка]
+	Пусть функция $f$ задана на  $\mathbb{R}^{N}$ 
+	и дважды непрерывно дифференцируема в некой окрестности 
+	$U_{\epsilon}(X^{*})$ если в точке 
+	$X^{*}$ $f$ имеет локальный минимум (максимум),
+	то Вычисленная в этой точке матрица Гессе, неотрицательно(неположительно) определена
+\end{theorem}
+\begin{proof}
+	Разложим функцию в ряд тейлора в $U_{\epsilon}(X^{*})$
+	 \begin{equation}
+		 f(X^{*} + \delta X) = f(X^{*}) + \grad f(X) \delta x  + \frac{1}{2} \delta X H(X^{*}) \delta X^{T} + o(||\delta X||^2)
+	 \end{equation}
+	 Так как $X^{*}$ точка локального экстремума
+	 \begin{equation}
+	 	\frac{1}{2} \delta X H(X^{*}) \delta X^{T} =
+		f(X^{*} + \delta X) - f(X^{*})
+	 \end{equation}
+\end{proof}
+\begin{theorem}
+	Рассмотрим $f(x)$ ,  $x^{*}$ стационарная точка,
+	в окрестности точки существует непрерывная вторая производная
+
+	Если $f''(x) > (<) 0$ то  $x^{*}$ точка локального минимума (максимума)
+\end{theorem}
+\begin{proof}
+	Разложим $f$ в  $U_{\epsilon}(x^{*})$ в ряд Тейлора
+	\begin{equation}
+		f(x^{*} + \delta x) = f(x^{*}) + f'(x^{*}) \delta x
+		+ \frac{1}{2} f''(x^{*}) (\delta x)^{2} + o((\delta x)^2)
+	\end{equation}
+	Так как $x^{*}$ стационарная точка
+	\begin{equation}
+		\frac{1}{2} f''(x^{*})  (\delta x) ^2 = 
+		f(x^{*} + \delta x) - f(x^{*})
+	\end{equation}
+\end{proof}
+\begin{theorem}[Достаточное условие экстремума]
+	$f$ задана на  $\mathbb{R}^{N}$ и
+	имеет стационарную точку, $\grad f(X^{*}) = 0$,
+	в окрестности которой все вторые производные существуют
+	и непрерывны. Если матрица Гессе $H(X^{*})$ 
+	положительно (отрицательно) определена,
+	то $X^{*}$ локального минимума (максимума) функции 
+	$f$. Если  $H(X^{*})$ не является знако определенной, то
+	экстремума в точке $X^{*}$ нет
+\end{theorem}
+\begin{proof}
+	\begin{equation}
+		f(X^{*} + \delta X) = f(X^{*}) +
+		\grad f(X^{*}) * \delta X +
+		\frac{1}{2} \delta X H(X^{*})\delta X^{T} + o(||\delta X||^2)
+	\end{equation}
+	\begin{equation}
+		\frac{1}{2} \delta X H(X^{*}) \delta X^{T} = 
+		f(X^{*} + \delta X) - f(X^{*})
+	\end{equation}
+\end{proof}
+\begin{theorem}[Частный случай прошлой теоремы для $N =  2$]
+	$f(x_1,x_2)$ задана на $\mathbb{R}^2$, $X^{*} = (x_1^{*},x_2^{*})$ стационарная точка, в которой
+	вторые производные существуют и непрерывны
+	\begin{enumerate}
+		\item Если в точке $X^{*}$
+			 \begin{equation}
+		f''_{x_1} f(X^{*}) * f''_{x_2}(X^{*}) - (f''_{x_1 x_2} (X^{*})) > 0
+			 \end{equation}
+			 то при 
+			 \begin{enumerate}
+			 	\item $f''_{x_1}(X^{*}) > 0$,  $X^{*}$ точка локального минимума
+				\item $f''_{x_2}(X^{*}) < 0,X^{*}$ точка локального максиумам
+			 \end{enumerate}
+	\item Если это не выполняется то локлаьного экстремума в точке $X^{*}$ нет
+	\end{enumerate}
+\end{theorem}
+\begin{definiiton}
+	Для функции $f$ определенной на  $\mathbb{R}^{N}$
+	вектор единичной длины задает направление убывания
+	$w^{\downarrow} \in \mathbb{R}^{N}$ или
+	возрастания $w^{\uparrow} \in \mathbb{R}^{N}$ 
+	в точке $X'$ если при всех достаточно малых
+	$\alpha$ выполяняется
+	\begin{equation}
+	f(X' + \alpha w^{\downarrow}) < f(X')
+	\end{equation}
+	\begin{equation}
+	f(X' + \alpha w^{\uparrow}) > f(X')
+	\end{equation}
+\end{definiiton}
+\begin{definiiton}
+	Направления убывания (возрастания) 
+	функции $f$ в точке  $X'$ 
+	образуют множество направлений убывания (возрастания)
+	 \begin{equation}
+		W_{X'}^{\downarrow} \subseteq \mathbb{R}^{N}
+	\end{equation}
+	 \begin{equation}
+		W_{X'}^{\uparrow} \subseteq \mathbb{R}^{N}
+	\end{equation}
+\end{definiiton}
+Точка $X^{*}$ является точко минимума функции $f(X)$ 
+если существует  $U_{\epsilon}(X^{*})$ целиком содержащаяся 
+в $W^{\uparrow}_{X^{*}}$
+\begin{theorem}
+	Пусть $f(X)$ дифференцируема в точке  $X' \in \mathbb{R}^{N}$
+	 \begin{enumerate}
+	 	\item если вектор $\mathbf{w} \in \mathbb{R}^{N}$
+			удовлетворяет условию
+			\begin{equation}
+				\grad f(X') \mathbf{w} < (>) 0
+			\end{equation}
+			то $\mathbf{w} \in W_{X'}^{\downarrow} (W_{X'}^{\uparrow})$
+		 \item если $\mathbf{w}^{\uparrow (\downarrow)} 
+			 \in W^{\downarrow (\uparrow)}$, то
+			 \begin{equation}
+			 	\grad f(X') \mathbf{w}^{\downarrow (\uparrow)} \le  (\ge ) 0
+			 \end{equation}
+	 \end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			\begin{equation}
+				f(X' + \alpha \mathbf{w}) =
+				f(X') + \grad f(X') \alpha \mathbf{w} + o(\alpha)
+			\end{equation}
+			\begin{equation}
+				\grad f{X'} \alpha \mathbf{w} = f(X' + \alpha \mathbf{w})  - f(X')
+			\end{equation}
+			Эквивалентно $\mathbf{w}^{\downarrow (\uparrow)} \in W^{\downarrow (\uparrow)}$ 
+		\item
+			Пусть $\mathbf{w}^{\downarrow (\uparrow)} \in
+			W^{\downarrow (\uparrow)}$ то
+			\begin{equation}
+				f(X' + \alpha \mathbf{w}^{\downarrow (\uparrow)}) -
+				f(X') = \grad f(X') \alpha \mathbf{w}^{\downarrow (\uparrow)}
+			\end{equation}
+	\end{enumerate}
+\end{proof}
+\section{Методы нелинейной оптимизации}
+\subsection{Классическая задача условной оптимизации}
+\begin{definiiton}[Формулировка задачи условной оптимизации  общем виде]
+	\begin{equation}
+		\label{task1}
+		X^{*} : f(X^{*}) = \extr_{X \in D} f(X)
+	\end{equation}
+	\begin{equation}
+		D = \{X \in \mathbb{R}^{N} \mid \psi_{j} \le ,(=,\ge ) 0,j =1 \dots M,X\in \mathcal{P}\}
+	\end{equation}
+\end{definiiton}
+\begin{definiiton}
+	Вектор $\mathbf{v} \in \mathbb{R}^{N}$ задает возможное
+	направление в точке $X \in D$ на
+	множестве допустимых значений  $D$ ,
+	есл при всех достаточно малых  $\alpha > 0$ ,
+	 $X' = X + \alpha \mathbf{v} \in D$
+
+	 Все возможные направления образуют в точке $x$ 
+	 функции  $f(X)$ образуют множество возможных
+	 направлений  $V_{X} \subseteq \mathbb{R}^{N}$
+\end{definiiton}
+\begin{theorem}
+	Если точка $X^{*}$ локальный минимум (максимум) 
+	задачи \ref{task1}, то
+	\begin{equation}
+		W_{X*}^{\downarrow (\uparrow)} \cap V_{X^{*}} = \emptyset
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Предположим обратное тогда существует $\mathbf{r} \in W^{\downarrow (\uparrow)}$ 
+Такой что при всех достаточно малых $\alpha$
+ \begin{equation}
+ 	f(X^{*} + \alpha \mathbf{r}) < (>) f(X^{*})
+ \end{equation}
+ \begin{equation}
+ 	X^{*} + \alpha \mathbf{r} \in D
+ \end{equation}
+ Следовательно $X^{*}$ не является локальным минимумом (максимумом)
+ $f$
+\end{proof}
+\begin{theorem}[Вейрштрасса]
+	Пусть $D \subset \mathbb{R}^{N}$ замкнутое
+	ограниченное множество $f(X)$ непрерывная функция
+	определенная на  $D$. Тогда на  $D$ существуют точки глобального
+	минимума и максимума функции  $f$
+\end{theorem}
+\begin{definiiton}
+	Классическая задача оптимизации -- 
+	это задача оптимизации, в которой множество
+	допустимых значений $D$ определяется 
+	системой функциональных  равенств
+	\begin{equation}
+		\psi_{j} (X) = 0, j = 1 \dots M, M < N
+	\end{equation}
+	\begin{equation}
+		D = \{X \in \mathbb{R}^{N} \mid \psi_{j}(X) = 0,j=1 \dots M\} \subset \mathbb{R}^{n}
+	\end{equation}
+	Подразумевается что функции $f,\psi_{j}$ определены на $D$
+	 \begin{equation}
+		 X^{*} : f(X^{*}) = \extr_{X \in D} f(X)
+	\end{equation}
+\end{definiiton}
+\begin{lemma}
+	Если область допустимых значений содержит точку 
+	$X'$ и ее окрестность  $U_{\epsilon}(X')$ , то
+	\begin{equation}
+		M < N
+	\end{equation}
+	При этом предполагаем , что $\psi_{j}(X)$ дифференцируемые функции
+\end{lemma}
+\begin{proof}
+	разложим $\psi_{j}(X) $ в ряд тейлора в окрестности точки $X'$
+	\begin{equation}
+		\psi_{j}(X' + \delta X) = \psi_{j}(X') + \grad \psi_{j}(X') \cdot \delta X + o(||\delta X||)
+	\end{equation}
+	\begin{equation}
+		\psi_{j}(X') = \psi_{j}(X' + \delta X)
+	\end{equation}
+	Получили систему $M$ линейных уравнений
+	 \begin{equation}
+		 \grad \psi_{j} \delta X = 0 , j = 1 \dots M
+	\end{equation}
+	\begin{equation}
+		\sum_{i =1}^{N} \frac{\partial \psi_{i}(X')}{\partial x_{i}} ,j = 1 \dots M
+	\end{equation}
+	\begin{enumerate}
+		\item $M > N$ система является переопределнной либо
+			не содержит решений, либо содердит линейно
+			зависимые ограничения, которые могут быть отброшены
+		\item  $M  = N$ система имеет  тривиальное решение,либо содержит линейно зависимые ограниения
+		\item  $M < N$ система имеет бесконечно много решений, которые определяют допустимую окрестность
+	\end{enumerate}
+\end{proof}
+\begin{lemma}
+	Предположим, что область допустимых значений
+	$D$ содержит хотя бы одну точку  $X' \in D$.
+	Если  $M < N$ и якобиан  $\mathbf{J} = (\frac{\partial \psi_{j}(X)}{\partial x_{i}})$ 
+	имеет в этой точке ранг равный  $M$,
+	то  $U_{\epsilon}(X') \subseteq D$
+\end{lemma}
+\begin{proof}
+	Пусть $X' + \delta X \notin D$, тогда
+	 \begin{equation}
+		\psi_{j}(X' + \delta X) = \grad \psi_{j} (X') \cdot \delta X + o(||\delta X||) \neq 0
+	\end{equation}
+	Так как $M < N$ можно выбрать  $P = N - M$ независимых переменных,
+	обозначим их как  $Z = (z_1,\dots,z_{P})$. Оставшиеся
+	зависиимые $S = (s_1,\dots,S_{M})$ , $X = (Z,S)$
+	 \begin{equation}
+		\Psi(X' + \delta X) = \mathbf{J}_{0}(X')\delta S^{T} +
+		\mathbf{C}(X') \delta Z^{T} \neq 0
+	\end{equation}
+	\begin{equation}
+		\delta X = (\delta S , \delta Z)
+	\end{equation}
+	\begin{equation}
+		\Psi = (\psi_{1},\dots,\psi_{M})^{T}
+	\end{equation}
+	\begin{equation} 
+	\mathbf{J}_{0}(X') = (\frac{\partial \psi_{j}(X')}{\partial s_{l}})_{j=1 \dots M,l = 1 \dots M}
+	\end{equation} 
+	\begin{equation} 
+	\mathbf{C}(X') = (\frac{\partial \psi_{j}(X')}{\partial z_{k}})_{j = 1\dots M,k = 1 \dots P} 
+	\end{equation} 
+	Так как ранг якобиана $\mathbf{J}$ равен $M$ 
+	всегда можно сделать разделение что  $\mathbf{J}_{0}$ 
+	будет невырождена
+	\begin{equation} 
+	\delta S^{T}  =
+	- \mathbf{J}^{-1}(X')\mathbf{C}(X') \delta Z^{t}
+	\end{equation} 
+	где $\mathbf{C}(X')$ называется матрицей управления
+	\begin{equation} 
+	\mathbf{J}_{0} \delta S^{T}  + \mathbf{C}(X') \delta Z^{T} = 0
+	\end{equation} 
+	\begin{equation} 
+	\mathbf{\Psi}(X' + \delta X)  = 0
+	\end{equation} 
+	Получили что окрестность $U_{\epsilon}(X')$ 
+	допустимой точки, содержащая отличные точки от $X'$, $X' + \delta X \in U_{\epsilon}(X') \subseteq D $
+\end{proof}
+\section{Метод множителей Лагранжа}
+Метод множителей Лагранжа сводит классическую задачу
+на условный экстремум к задаче на безусловный экстремум
+\begin{definiiton}[Функция Лагранжа]
+	\begin{equation}
+	L(\Lambda,\lambda_0,X) = 
+	\lambda_0 f(X) + \sum_{j}^{M} \lambda_{j} \psi_{j}(X)
+	\end{equation} 
+	Данная функция является функцией $N$ переменных  $X$,
+	и   $N + 1$ параметров  $\lambda$
+\end{definiiton}
+\begin{equation}
+	\pa{L(\Lambda,\lambda_0,X)}{x_{i}} = \lambda_0 \pa{f(X)}{x_{i}} + \sum_{j =1}^{M} \lambda_{j} \pa{\psi_{j}(X)}{x_{i}}
+\end{equation} 
+Составим из частных производных вектор
+\begin{equation}
+\mathbf{L}'_{X} = (\lambda_0 \pa{f(X)}{x_{i}} + \sum_{j =1}^{M} \lambda_{j} \pa{\psi_{j}(X)}{x_{i}}
+)_{i = 1 \dots N}
+\end{equation} 
+Частные производные по координатам $\lambda_{j}$
+ \begin{equation}
+	 \pa{L(\Lambda,\lambda_0,X)}{\lambda_{j}} = \psi_{j}(X), j = 1 \dots M
+ \end{equation}
+ Если точка $X^{*}$ является точкой локального условного 
+ экстремума, то
+ \begin{equation}
+ \psi_{j}(X^{*}) = 0, L(\Lambda,\lambda_0,X^{*}) = \lambda_0 f(X^{*})
+ \end{equation} 
+ $L$ имеет безусловный локальный экстремум при  $\lambda_0 \neq 0, X^{*} \in D$
+  \begin{theorem}[Правило множителей Лагранжа]
+	  Пусть в $U_{\epsilon}(X^{*}) \subset D$
+	   \begin{enumerate}
+	   	\item $f$ , $\psi_{j}(X)$  непрерывно дифференцируемы
+		\item ранг матрицы Якоби $\mathbf{J}(X) =  (\pa{\psi_{j}}{x_{i}})_{i = 1\dots N, j = 1 \dots M}$ равен $M$
+	   \end{enumerate}
+	   Если $f(X^{*}) = \extr_{X \in D} f(X)$ 
+	   то существуют $\lambda^{*}_0 \neq_0, \Lambda^{*} \neq 0$,что точка $(\lambda^{*},1,X^{*})$ является стационарной точкой
+	   задачи на езусловный экстрмум функции Лагранжа
+	   \begin{equation}
+	   \grad f(\Lambda^{*},1,X^{*}) = 0
+	   \end{equation} 
+  \end{theorem}
+  \begin{proof}
+  	Пусть точка $X^{*}$ точка экстремума задачи
+	на условный. Чтоб точка была стационарной точкой функции загранжа
+	\begin{equation}
+		\label{system1}
+		\lambda_0 \pa{f(X)}{x_{i}} + \sum_{j=1}^{M}\lambda_{j} \pa{\psi_{j}(X)}{x_{i}} = 0 , i = 1,\dots N
+	\end{equation} 
+	\begin{equation}
+	\pa{L(\Lambda,\lambda_0,X)}{\lambda_j} = \psi_{j}(X) = 0, j = 1,\dots M
+	\end{equation} 
+	$N+M$ уравнений,  $N+M+1$ переменная,
+	 если $\lambda_0 \neq 0$ , то можно
+	 положить его равным $\lambda_0 = 1$, 
+	 два случая
+	 \begin{enumerate}
+		 \item $\lambda_0 = 1$, система \ref{system1} линейна
+			относительно  $\Lambda$,
+			 ранг  $\mathbf{J}(X^{*}) = M$,
+			 $(X^{0},1,\Lambda)$ стационарная точка
+		 \item $\lambda_0 = 0$ , cистема \ref{system1}
+			 имеет нулевое решение, строить функцию лагранжа нет смысла
+	 \end{enumerate}
+  \end{proof}
+  \begin{equation}
+  L(\lambda,X) = f(X) \pm \sum_{j=1}^{M} \lambda_{j} \psi_{j}(X)
+  \end{equation} 
+  регуляная функция Лагранжа
+
+
+  Нам нужна будет Матрица Гессе для функции Лагранжа
+  \begin{equation}
+  \mathbf{H}(\Lambda,X) = 
+  \begin{pmatrix} 
+	  \mathbf{0} & \mathbf{J}(X)  \\
+	  \mathbf{J}^{T}(X) & \mathbf{L}''_{XX}(\Lambda,X)
+  \end{pmatrix} 
+  \end{equation} 
+  \begin{equation}
+  \mathbf{L}''_{XX}(\Lambda,X) = (\pa{L(\Lambda,X)}{x_{i} x_{j}})_{i = 1 \dots N , j = 1 \dots N}
+  \end{equation} 
+  \begin{equation}
+  \mathbf{J}(X) = (\pa{\psi_{j}(X)}{x_{i}})_{j = 1 \dots M, i = 1 \dots N}
+  \end{equation} 
+  \begin{theorem}[Необходимое условие второго порядка]
+	  Пусть в окрестности $U_{\epsilon}(X^{*}) \subset D$ 
+	  точки $X \in \mathbb{R}^{N}$ 
+	  \begin{enumerate}
+	  	\item функции $f, \psi_{j}$ 
+			дважды непрерывно диффеенцируемы
+		\item $\rank \mathbf{J}(X^{*}) = M$
+	  \end{enumerate}
+	  Пусть точка $X^{*}$ 
+	  точка локального минимума (максимума)
+	  классической задачи на условный экстремум
+	  тогда для любых отклонений $\delta X$ от
+	  точки  $X^{*}$ удовлетворяющих условию
+	  \begin{equation}
+	  \grad \psi_{j}(X^{*}) \cdot \delta X = 0
+	  \end{equation} 
+	  или
+	  \begin{equation}
+		  \label{j1}
+	  	\mathbf{J}(X^{*}) \delta X^{T} = 0
+	  \end{equation}
+	  в стационарной точке $(\Lambda^{*} , X^{*})$ 
+	  функции Лагранжа выполняется
+	  \begin{equation}
+	  \delta X \mathbf{L}''_{XX}(\Lambda^{*},X^{*}) \delta X^{T}\ge  (\le ) 0
+	  \end{equation} 
+  \end{theorem}
+  \begin{proof}
+  	Разложим функцию Лагранжа в ряд Тейлора в 
+	окрестности $X^{*}$ с остатком в форме Пеано
+	\begin{equation}
+		\begin{split}
+		L(\Lambda,X) =
+		L(\Lambda^{*},X^{*}) +
+		\grad L(\Lambda^{*},X^{*}) (\delta \Lambda,\Delta X) + \frac{1}{2} (\delta \Lambda,\delta X) H(\Lambda^{*},X^{*}) \begin{pmatrix} 
+		\delta \Lambda^{T} \\
+		\delta X^{T}
+		\end{pmatrix} +\\ o(|| \delta \Lambda,\delta X||^2)
+	\end{split}
+	\end{equation}
+	\begin{equation}
+		f(X) = 
+		f(X^{*}) + \frac{1}{2} (\delta \Lambda,\delta X)
+		\begin{pmatrix} 
+			\mathbf{0} & \mathbf{J}(X^{*}) \\
+			\mathbf{J}^{T}(X^{*}) & \mathbf{L}''_{XX}(\Lambda,X)
+		\end{pmatrix} 
+		\begin{pmatrix} 
+		\delta \Lambda^{T} \\
+		\delta X^{T}
+		\end{pmatrix} 
+	\end{equation}
+	\begin{equation}
+		(\delta \Lambda,\delta X)
+		\begin{pmatrix} 
+			\mathbf{0} & \mathbf{J}(X^{*}) \\
+			\mathbf{J}^{T}(X^{*}) & \mathbf{L}''_{XX}(\Lambda,X)
+		\end{pmatrix} 
+		\begin{pmatrix} 
+		\delta \Lambda^{T} \\
+		\delta X^{T}
+		\end{pmatrix} = \delta X \mathbf{L}_{XX}''(\Lambda^{*},
+		X^{*}) \delta X^{T}
+	\end{equation}
+	в силу \ref{j1}
+	\begin{equation}
+	f(X) - f(X^{*}) = \delta X \mathbf{L}''_{XX}(\Lambda^{*},X^{*}) \ge  (\le ) 0
+	\end{equation} 
+  \end{proof}
+  \begin{theorem}[Достаточное условие экстремума]
+	  Дана классическая задача оптимизации
+
+	  Предположим, что в окрестности допустимой точки $X^{*}$
+	   \begin{enumerate}
+	   	\item $f(X),\psi_{j}(X)$ дважды дифферринцируемы
+		\item $\rank \mathbf{J}(X^{*}) = M$
+		 \item существуют не равные нулю $(\Lambda^{*},\lambda^{*})$ такие что $\grad L(\Lambda^{*},X^{*}) = 0$ 
+		\item существуют не нулевые отклонения
+			$\delta X$ от точки $X^{*}$, удовлетворяющие условиям
+			\begin{equation}
+			\grad \psi_{j}(X^{*}) \cdot \delta X = 0
+			\end{equation} 
+			Для которых выполняется
+			\begin{equation}
+				\delta X \mathbf{L}''_{XX}(\Lambda^{*},X^{*}) \delta X^{T} > (<) 0
+			\end{equation} 
+			То $X^{*}$ локального минимума (максимума) $f(X)$
+	   \end{enumerate}
+  \end{theorem}
+  \begin{theorem}[Достаточное условие в терминах матрицы Гессе функции Лагранжа]
+	  Дана классическая задача оптимизации.
+	  Допустим в точке 
+	   $X^{*}$, $f,\psi_{j}$ дважды 
+	   непрерывно дифференцируемы.
+	   Если существуют ненулевые 
+	   значения множителей Лагранжа 
+	   для которых $(X^{*},\Lambda^{*})$ 
+	   является стационарной точкой регулярной функции
+	   Лагранж
+	   \begin{equation}
+	   L(\Lambda,X) = f(X) + \sum_{j= 1}^{M} \lambda_{j}^{M}\lambda_{j} \psi_{j}
+	   \end{equation} 
+	   То $X^{*}$ является:
+	   \begin{enumerate}
+	   	\item точкой минимума $f(X)$
+			 \begin{equation}
+			\sgn(M_{2M +k} (\mathbf{H})) =
+			\sgn((-1)^{M}), k = 1 \dots N - M
+			\end{equation} 
+		\item точкой максимума $f(X)$
+			 \begin{equation}
+			\sgn(M_{2M + k}(\mathbf{H})) =
+			\sgn((-1)^{M+1})
+			\end{equation} 
+	   \end{enumerate}
+  \end{theorem}
+  \section{Интерпретация множителей Лагранжа}
+  \begin{equation}
+  X^{*}: f(X^{*}) = \extr_{X \in D} f(X)
+  \end{equation} 
+  \begin{equation}
+	  D = \{X \in \mathbb{R}^{N} \mid \phi_{j}(X) = b_{j}\} \subset \mathbb{R}^{N}
+  \end{equation} 
+  \begin{equation}
+  L(\Lambda,X) =f(X) - \sum_{j = 1}^{M} \lambda_{j} (\phi_{j}(X) - b_{j})
+  \end{equation} 
+  В стационарной точке $(\Lambda^{*},X^{*})$
+   \begin{equation}
+   \pa{f}{x_{i}} = \pa{f(X)}{x_{i}} - \sum_{j =1}^{M}\lambda_{j} \pa{\phi_{j}}{x_{i}} ,i = 1 \dots N
+   \end{equation} 
+   \begin{equation}
+	   \bm{\pa{f}{x_1}}_{X^{*}} = \sum_{j= 1}^{M} \lambda_{j} \bm{\pa{\phi_{j}}{x_{1}}}_{X^{*}}
+   \end{equation} 
+   и так далее
+
+   Допустим , что $X^{*}$ 
+   является точкой условного экстремума. Предположим
+   что величины $b_{j}$ варьируются
+   , точки экстремума,значения функицй $f,\psi_{j}$ могут рассматриваться как функции параметров
+   $b_{j}$
+    \begin{equation}
+    	x^{*}_{i} =  x_i (b_1,\dots,b_{M}) , i = 1 \dots N
+    \end{equation}
+    \begin{equation}
+    	f(X^{*}) = f(X^{*} (b_1, \dots b_{M}))
+    \end{equation}
+\end{document}
+

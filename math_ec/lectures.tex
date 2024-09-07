@@ -1,0 +1,354 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+\setmainfont{Times New Roman}
+\usepackage{amssymb}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{lemma}[theorem]{Лемма}
+\DeclareMathOperator{\mrts}{MRTS}
+\DeclareMathOperator{\mrs}{MRS}
+\DeclareMathOperator{\wpp}{WP}
+\title{Математическая экономика}
+\author{}
+\date{}
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item Дмитририев Антон Леонидович
+		\item dmitr7171@mail.ru
+		\item Элементы математической экономики, Экланд (как сказка на ночь)
+		\item Аллен Р.Г Математическая экономия
+		\item Тарасевич Микроэкономика
+		\item Микроэкономика практикум ii (Дмитриев)
+	\end{enumerate}
+	\section{Предпочтения}
+	Нам надо научиться математически
+	моделировать индивида.
+	\begin{definition}[Поведенческий Постулат]
+		Лицо принимающее решение
+		всегда выбирает наиболее предпочтительную
+		для себя альтернативу
+	\end{definition}
+	Модель выбора должна содержать:
+	\begin{enumerate}
+		\item описание системы предпочтений ЛПР
+		\item множество альтернатив, доступных ЛПР
+	\end{enumerate}
+	\begin{enumerate}
+		\item В основе выбора
+			наилучшей альтернативы лежит
+			сравнение возможных вариантов
+		\item сравнение любых
+			альтернатив предполагает их прямое или
+			косвенное сопоставление
+		\item ЛПР сравнивают любую пару
+			возможных вариантов по приницу
+			лучше хуже. С точке срение математики 
+			задается бинарное отношение.
+	\end{enumerate}
+		Пусть $М$
+		множество непустое ЛПР
+		альтернатив. Рассмотрим
+		множество всех упорядоченных пар  $(x,y)$,
+		 $(x,y) \sim (y,x)$ безразличие
+	 \begin{definition}[Бинарное отношение]
+		 \begin{equation} 
+		 A \subseteq M \times M
+		 \end{equation} 
+	\end{definition}
+	\begin{definition}[Функция]
+		$\forall x \in M \exists ! y \in M$ для которого
+		справедливо $x A y$
+	\end{definition}
+	\begin{definition}[График]
+		\begin{equation} 
+			\Gamma = \{(x,y) \mid x,y \in M, xAy\} 
+		\end{equation} 
+	\end{definition}
+	\begin{definition}[Отношение предпочтения]
+		Потребитель сравнивает два набора благ
+		\begin{enumerate}
+			\item строгое предпочтение ($x$ лучше  $y$)
+			\item слабое предпочтение $x$ не хуже  $y$
+			\item  безразличие,  $x$ и  $y$ одинаково хороши
+		\end{enumerate}
+	\end{definition}
+	Рассмотрим символьную запись
+	\begin{enumerate}
+		\item $x \succ y$  $x$ строго лучше  $y$  
+		\item $x \succeq y$ $x$ не хуже  $y$
+		\item  $x \sim y$  $x,y$ одинакого предпочтительны
+	\end{enumerate}
+	\subsection{Гипотезы (аксиомы) о свойствах}
+	\begin{enumerate}
+		\item \textbf{ Полнота } для любых наборов выполняется $x \succeq y$ или $y \succeq x$
+		\item \textbf{Рефлексивность} для любого $x$ ,  $x \succeq x$
+		\item \textbf{Транзитивность},
+			есть три набора благ
+			$x,y,z$
+			 \begin{equation} 
+			x \succeq  y \land y \succeq z \implies x \succeq z
+			\end{equation} 
+	\end{enumerate}
+	\subsection{Непрерывность отношения}
+	\begin{definition}
+		Отношение на множестве $X$ 
+		непрерывно
+		если для любого вектора
+		 $y \in X$  
+		 множества
+		  \begin{equation} 
+			  \{x \in X \mid x \succeq y\} 
+		 \end{equation} 
+		 \begin{equation} 
+			 \{x \in X \mid x \preceq y\} 
+		 \end{equation} 
+		 являются замкнутыми
+	\end{definition}
+	\begin{definition}[Рациональное отнощение потребления]
+		Определенное на множестве
+		наборов благ $R^{n+}$ 
+		отношения предпочтения $\succeq$ 
+		называется
+		рациональным, если оно является:
+		\begin{enumerate}
+			\item полным
+			\item рефлексивным
+			\item транзитивным
+		\end{enumerate}
+	\end{definition}
+	\subsection{Свойства рационального отношения предпочтения}
+	В случае рациональность $\succeq$ :
+	\begin{enumerate}
+		\item $\succ$ антирефлексвно  ( не выполняется $x \succ x$ ), транзитивно
+		\item $\succeq$ рефлексивно,транзитивно,симметрично
+		\item $x \succ y \succeq z \implies x \succ z$
+	\end{enumerate}
+	\subsection{Кривые безразличия}
+	\begin{enumerate}
+		\item Зафиксируем некоторый набор благ
+			$x'$ .
+			Множество всех набор одинаково
+			предпочтительных с  $x'$,
+			называется кривой безразличия, содержашей  $x$
+	\item Посколько кривая не сегла кривая в геометрическом
+		смысле, то правильно говорить о
+		множестве безразличия
+		\begin{equation} 
+			I(x') = \{y \in R^{n+} \mid y \sim x'\} 
+		\end{equation} 
+	\end{enumerate}
+	\begin{equation} 
+	\wpp(x) 
+	\end{equation} 
+	множество наборов не хуже $x$,  $I(x) \subseteq \wpp(X)$
+
+	Кривые безразличя не пересекаются, возникнет нарушение транситивности
+	\subsection{Наклон кривых безразличия}
+	\begin{enumerate}
+		\item Товар наличие которого в большем количестве
+			всегда предпочтительнее меньшего, называется
+			\textbf{благом}
+		\item Если в наборе присутствуют только блага,
+			то кривая безразличия имеет отрицательный
+			наклон, по отношению к 
+			осям соответсвующих благ
+	\end{enumerate}
+	\begin{definition}[Антиблаго]
+		Товар, наличие которого
+		в наборе в меньшем количестве всегда предпочтительнее большего называется \textbf{антиблаго}
+	\end{definition}
+	\begin{definition}[Совершенные заменители]
+		Если потребитель в любых
+		условиях считает два блага эквивалетными,
+		то он совершенные заменители.
+
+		Если набор состояит из совершенных
+		заменителей, то предпочтительность определяется
+		общим количеством.
+	\end{definition}
+	\begin{definition}
+		Если потрибитель во всех ситуациях
+		исползует блага 1,2 в некоторой
+		фиксированной пропорции,
+		такие блага называются \textbf{совершенными дополняемыми}
+		\begin{equation} 
+			U = \min(x_1,x_2)
+		\end{equation} 
+	\end{definition}
+	\begin{definition}
+		Набор благ, строго предпочитаемый всем
+		другим, называется точкой насыщения
+	\end{definition}
+	\begin{definition}
+		Отношение предпочтения
+		мы будем называть локально ненасышенным
+		дл любого набора
+		$x \subseteq R^{n+}$ 
+		и произвольного числа $t > 0$ 
+		найдется  $y \subseteq R^{n + }$ 
+		$y - x \preceq t$ и при этом $y \succeq x $
+	\end{definition}
+	\begin{enumerate}
+		\item Бесконечно делимое благо
+		\item Дискретное благо
+	\end{enumerate}
+	\begin{definition}
+		Рациональное отношение 
+		предпочтения, является регулярным
+		если оно
+		\begin{enumerate}
+			\item монотонно, большее 
+				количество блага всегда предпочитается меньшему (наборы состоят только из благ)
+			\item выпуклое
+		\end{enumerate}
+	\end{definition}
+	Выпуклая комбинация двух различных, но при этом
+	одинаково предпочтительных наборов предпочтительных или по крайней мере не хуже, чем каждый из сотавляющих наборов
+	\subsection{Наклон кривых безразличия}
+	Вычисленный в конкретной тчоке наклон,
+	кривой безразличия характеризует в ней 
+	предельную норму замены благ MRS (margina rate
+	of substitution)
+
+	$\mrs$ в точке  $x'$ 
+	харакетризует исчисленный в ней наклон
+	кривойй безразличия, которому эта точка принадлежитю
+	Геометрически  $\mrs$ есть тангенс угла наклона касательной
+	и кривой без различия в точке  $x'$
+
+	$\mrs$ в точке  $x'$ есть  $\lim_{\Delta x_1 \to 0} \frac{\Delta x_2}{\Delta x_1}$ или иначе $\frac{d x_2}{d x_1}$ в точке $x'$
+
+
+	Если набор составлен из двух благ, то соответсвующие кривые
+	имеют отрицательный наклон  $\mrs < 0$
+
+	Если набор включает одно благо и одно антиблаго $\mrs > 0$
+	\section{Полезность}
+	\begin{definition}
+		Функция полезност $U(X)$ описывает отношение
+		предпочтения  $\succeq$ тогда
+		и только когда для двух наборов благ  $x', x''$ 
+		верны следущие соотношения
+		 \begin{enumerate}
+			\item $x' \succ x'' \iff U(X') > U(x'')$
+			\item  $x' \prec x'' \iff U(x') < U(x'')$
+			\item  $x' \sim x'' \iff U(x') = U(x'')$ 
+		\end{enumerate}
+	\end{definition}
+	Непрерывное, монотонное возрастающее рциональное
+	отношение педпочтения может
+	быть представлено непреывной функцией полезности
+
+	\begin{definition}[непрерывность]
+		Малые изменения набора благ, ведут малые изменения
+		предпочтительности набора благ
+	\end{definition}
+	Полезность является порядковым (задающим упорядочение) 
+	понятием
+	\begin{example}
+		$U(x) = 6,U(y)=2$ x строго предпочтительнее $y$,
+		но при этом нельзя сказать, что $x$ в 3 раза
+		предпочтительнее  $y$
+	\end{example}
+	\begin{example}
+		Рассмотрим наборы благ, представленные векторами
+		$(4,1),(2,3),(2,2)$
+		
+		Допустим 
+		 \begin{equation}
+			 (2,3) \succ (4,1) \sim (2,2)
+		\end{equation} 
+		Поставим в
+		соотсветвие этим  наборам произвольные числа,
+		сохранябщие упорядчение векторов по предпочтительности
+		\begin{equation}
+		U(2,3) = 6 > U(4,1) = U(2,2) = 4
+		\end{equation} 
+		Назовем эти числа уровнями полезности
+	\end{example}
+	\begin{definition}
+		Совокупность всех кривых безразличия
+		называется картой кривых безразличия
+	\end{definition}
+	\begin{example}
+		Пусть $U(x_1,x_2) = x_1 x_2$ описывает
+		отношение $\succeq$
+		\begin{equation}
+		V = U^2 = x_1^2 x_2 ^2
+		\end{equation} 
+		\begin{equation}
+			V(2,3) = 35 > V(4,1) = V(2,2) = 16
+		\end{equation}
+		\begin{equation}
+			(2,3) \succ (4,1) \sim (2,2)
+		\end{equation} 
+		$V$ сохраняет тоже самое упорядочение, что и
+		 $U$. Функция описывает одинаковое с  $U$ отношение предпочтения
+		  \begin{equation}
+		 W = 2 U +10
+		 \end{equation} 
+		 \begin{equation}
+			 W(2,3) = 22 > W(4,1) = W(2,2) = 18
+		 \end{equation} 
+	\end{example}
+	Если $U(x)$ является функцией полезности
+	описыващей отношение предпочтения  $\succeq$
+	на множестве неотриательных наборов блаш  $R^{n+}$ ,
+	$f(U)$ есть строго возрастающая функция, одного
+	аргумента, то зависимость  $V = f(U)$ так же
+	представляет собой функцию полезности,
+	описывающую исходное отношение предпочтения  $\succeq$
+
+	\begin{theorem}[о существовании непрерывной функции полезности]
+	Пусть отношения предпочтения ЛПР $\succ$
+	является полным, рефлексивным, непрерывным и строго монотонным.
+	Тогда существует непрерывная функция полезности  $U:R^{n+} \to R$ описывающая данное отнощение предпочтения
+	\end{theorem}
+	Рассмотрим $V = x_1 + x_2$ ее кривые безразличия это
+	прямые линии, состоящих из совершенных заменителей
+
+	Рассмотрим $W(x_1,x_2) = \min(x_1,x_2$ ее кривые безразличия
+ блага совершенные дополнители
+
+
+Рассмотрим $U(x_1,x_2) = f(x_1) + x_2$ квазилинейная функция, является линейной только по $x_1$
+\begin{definition}[Функция Кобба-Дугласа]
+	\begin{equation}
+		U(x_1,x_2) = x_1^{a} x_2^{b}, a>0,b>0
+	\end{equation}
+\end{definition}
+\begin{definition}[Предельная Полезность]
+	Предельная полезность продукта $i$
+	\begin{equation}
+		MU_{i} = \frac{\partial U}{\partial x_{i}}
+	\end{equation} 
+\end{definition}
+\begin{example}
+	\begin{equation}
+	U(x_1,x_2) = x_1^{\frac{1}{2}}x^2_2
+	\end{equation} 
+	\begin{equation}
+	MU_1 = \frac{1}{2} x_1 ^{- \frac{1}{2}}x^2_{2}
+	\end{equation} 
+	\begin{equation}
+	MU_1 = 2 x_1^{\frac{1}{2}} x_2
+	\end{equation} 
+\end{example}
+Общее уравнение кривой безразличия функции 
+полезности $U(x_1,x_2)$ иметт вид $U(x_1,x_2) = k, k > 0 , k = \text{const}$. Полный дифференциал
+\begin{equation}
+\frac{\partial U}{\partial x_{1}} dx_1 + \frac{\partial U}{\partial x_2} dx_2 = 0
+\end{equation} 
+\end{document}
