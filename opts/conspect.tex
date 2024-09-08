@@ -731,5 +731,112 @@
     \begin{equation}
     	f(X^{*}) = f(X^{*} (b_1, \dots b_{M}))
     \end{equation}
+    \begin{equation}
+	    \psi_{j} = \psi_{j}(X^{*} (b_1,\dots,b_{M})
+    \end{equation} 
+    \begin{equation}
+	    \bm{\frac{\partial f}{\partial b_{k}}}_{X^{*}} =
+	    \sum_{i=1}^{N} \bm{ \frac{\partial f}{\partial x_i} }_{X^{*}} \frac{dx_{i}}{b_{k}}
+    \end{equation} 
+    \section{Метод Якоби}
+    \begin{equation}
+    f(X^{*}) = \extr_{X \in D} f(X)
+    \end{equation} 
+    можно свести к задаче 
+    безусловного экстеремума, если $\rank \mathbf{J} = M$
+
+    Ограничения разложим в ряд Тейлора в окрестности 
+    $U_{\epsilon}^{D}(X)$ 
+    с остаточным членом в форме Пеано
+    \begin{equation}
+    \psi_{j}(X') =
+    \psi_{j}(X + \delta X) = 
+    \psi_{j}(X) + \grad \psi_{j}(X) \cdot \delta X  +
+    o(|\delta X|) ,j = 1 \dots M
+    \end{equation} 
+    при малых $\delta X$
+     \begin{equation}
+    \delta \psi_{j}(X) = \psi_{j}(X') -\psi_{j}(X) =
+    \grad{\psi_{j}(X)} \cdot \delta X, j = 1 \dots M
+    \end{equation} 
+    В допустимой окрестности 
+    имеем $U_{\epsilon}^{D}(X)$ 
+    имеем $\psi_{j}(X') = \psi_{j}(X) = 0$ 
+    поэтому 
+    \begin{equation}
+    \grad \psi_{j}(X)  \cdot \delta X = 0 j=1 \dots M
+    \end{equation} 
+    Полученна система $M$ линейных уравнений,
+    относительно  $N$ отклонений  $\delta X$ 
+    от точки $X$.
+    Выберем  $M$ зависимых переменных, обозначим их как
+     $\delta S = (\delta s_1 \dots \delta s_{M})$, оставшиеся  $\delta Z = (\delta z_1,\dots, \delta z_{N  - M})$, $\delta X = (\delta S, \delta Z)$
+      \begin{equation}
+     \grad \psi_{j} = (\grad_{S} \psi_{j},\grad_{Z} \psi_{j})
+     \end{equation} 
+     где
+     \begin{equation}
+	     \grad_{S} \psi_{j} = \left(\frac{\partial \psi_{j}}{\partial s_{i}}\right)_{i = 1 \dots M}
+     \end{equation} 
+     \begin{equation}
+     \grad_{Z} \psi_{j} = \left(\frac{\partial \psi_{j}}{\partial z_{i}}\right)_{i = 1 \dots N - M}
+     \end{equation} 
+     \begin{equation}
+	     \begin{split}
+     \grad \psi_{j}(X) \cdot \delta X = 
+     (\grad_{S} \psi_{j}, \grad_{Z} \psi_{j}) \cdot (\delta S,\delta Z) = \grad_{S} \psi_{j} \cdot \delta S + \grad_{Z} \cdot \delta Z = 0 \\ j = 1 \dots M
+	     \end{split}
+     \end{equation} 
+     \begin{equation}
+     \mathbf{C}(X) = 
+     \begin{pmatrix} 
+     \grad_{Z}  \psi_{1}\\
+     \vdots\\
+     \grad_{Z} \psi_{M}
+     \end{pmatrix}_{M \times (N - M)}
+     \end{equation} 
+     Матрица управления
+     \begin{equation}
+	     \mathbf{J}_{0}(X)
+	     =
+	     \begin{pmatrix} 
+	     \grad_{S} \psi_{1} \\
+	     \vdots\\
+	     \grad_{S} \psi_{M}
+	     \end{pmatrix} _{M \times M}
+     \end{equation} 
+     Так как ранг матрицы $\mathbf{J}$ равен
+     $M$ , то всегда можно выбрать  координаты  $\delta S$ 
+     чтобы матрица  $\mathbf{J}_{0}$ была невырожденной
+     \begin{equation}
+     \mathbf{J}(0) \delta S^{T} + \mathbf{C}(X) \delta Z^{T} = 0
+     \end{equation} 
+     \begin{equation}
+     \delta S^{T} = - \mathbf{J}^{-1}_{0}(X) \mathbf{C}(X) \delta Z^{T}(X)
+     \end{equation} 
+     \begin{equation}
+     f(X') = f(X + \delta X) = 
+     f(X) + \grad f(X) \delta X + o(|\delta X|)
+     \end{equation} 
+     При малых $\delta X$
+     \begin{equation}
+     \delta f(X) = f(X + \delta X) - f(X)  = \grad f(X) \cdot \delta X
+     \end{equation} 
+     \begin{equation}
+     \delta f(X) = \grad_{S} f(X) \delta S + \grad_{Z} f(X) \delta Z
+     \end{equation} 
+     \begin{equation}
+     \delta f(X)  = (\grad_{Z} f(X) - \grad_{S} f(X) \mathbf{J}_{0}^{-1}(X) \mathbf{C}(X)) \delta Z
+     \end{equation} 
+     переходим к пределу $Z \to 0$
+      \begin{equation}
+     \frac{\partial f(X)}{\partial Z} = 
+     \grad_{*} f(X)= 
+     \grad_{Z} f(X) - \grad_{S} f(X) \mathbf{J}_{0}^{-1}(X) \mathbf{C}(X)
+     \end{equation} 
+     \begin{equation}
+     \delta f(X) = \grad_{*} f(X) \cdot \delta Z
+     \end{equation} 
+     $\grad_{*} f(X)$ приведенный (условный) градиент
 \end{document}
 
