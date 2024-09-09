@@ -15,6 +15,12 @@
 \newtheorem{example}{Пример}
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
+\DeclareMathOperator{\extr}{extr}
+\DeclareMathOperator{\grad}{\textbf{grad}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rank}{Rank}
+\newcommand{\pa}[2]{ \frac{\partial #1}{\partial #2}}
+\newcommand{\bm}[1]{ \left.#1\right|}
 \title{Опты}
 \author{}
 \date{}
@@ -455,5 +461,121 @@ $\lambda_0 \neq 0$ система содержит $N+M$ неизвестных,
 	\end{enumerate}
 	Тогда $X^{*}$
 \end{theorem}
+\section{Интерпретаця множителей Лагранжа}
+\begin{equation}
+X^{*} : f(X^{*})  = \extr_{X \in D} f(X)
+\end{equation} 
+\begin{equation}
+	D = \{X \in \mathbb{R}^{N} \mid \phi_{j}(X)  = b_{j}\}
+\end{equation} 
+\begin{equation}
+L(\Lambda,X) = f(X) - \sum_{j = 1}^{M} \lambda_{j} (\phi_{j} (X) - b_{j})
+\end{equation} 
+\begin{equation}
+\frac{\partial L(\Lambda,X)}{\partial x_{i}} =
+\frac{\partial f(X)}{\partial x_{i}} - \sum_{j=1}^{M} \lambda_{j} \frac{\partial \phi_{j}(X)}{\partial _{i} } = 0
+\end{equation} 
+Пусть $X^{*}=  (x_1^{*},\dots x^{*}_{N)}$ 
+является точкой условного экстремума $f(X)$
+ $f(X^{*}0,\phi_{j}(X^{*})$ рассматриваем как функции
+ параметров $b_{j}$
+  \begin{equation}
+  x_{i}^{*} = x_1(b_1,\dots,b_{M})
+  \end{equation} 
+  \begin{equation}
+  f(X^{*}) = f(X^{*}(b_1 \dots b_{M}))
+  \end{equation} 
+  \begin{equation}
+  \phi_{j}(X^{*}) = \phi_{j}(X^{*}(b_1 \dots b_{M}))
+  \end{equation} 
+  \begin{equation}
+  \bm{ \frac{\partial f}{\partial b_{k}} }_{X^{*}} = 
+  \sum_{i = 1}^{N} \bm{ \frac{\partial f}{\partial x_{i}} }_{X^{*}} \frac{d x_1}{x_{k}}
+  \end{equation} 
+
+  \subsection{Оценка точности апроксимации}
+  тут рассматриваем точность, из-за разложения в ряд Тейлора
+
+  Оценим точность апроксимации $\delta f(X)$
+  \subsection{Анализ чувствительности методом Якоби}
+  \begin{equation}
+	  D = \{X \in \mathbb{R}^{N} \mid \phi_{J}(X) = b_{j},
+	  j = 1 \dots M\} \subset \mathbb{R}^{N}
+  \end{equation} 
+  \begin{equation}
+  \delta B = (\delta b_1, \dots \delta b_{M} )
+  \end{equation} 
+  \begin{equation}
+  \rank \mathbf{J}(X) = M
+  \end{equation} 
+  \begin{equation}
+  \delta X = ( \delta S, \delta Z)
+  \end{equation} 
+  \begin{equation}
+  \delta f(X)  = \grad_{S} f(X) \delta S^{T} +
+  \grad_{Z} f(X) \delta Z^{T}
+  \end{equation} 
+  \begin{equation}
+  \delta \phi_{j} (X) = \delta b_{j}
+  \end{equation} 
+  \begin{equation}
+  \mathbf{J}(X) \delta S^{T} + \mathbf{C} \delta S^{T}
+  \end{equation} 
+  \begin{equation}
+  \delta f(X) = \grad_{S} f(X) \mathbf{J}^{-1}_{0} (X) \delta B^{T}  + \grad_{(*)} f(X) \Delta Z^{T}
+  \end{equation} 
+  \begin{equation}
+  \delta f(X^{*}) = \grad_{S} f(X^{*}) \mathbf{J}_{0}^{-1}(X^{*}) \delta B^{T}
+  \end{equation} 
+  \begin{equation}
+	  \frac{\delta f(X^{*})}{\delta B^{T}} = \grad_{S} f(X^{*}) \mathbf{J}_{0}^{-1}(X^{*})
+  \end{equation} 
+  \section{Линейное программирование}
+  Целевая функция линейна, ограничения линейные равенства или неравенства.
+  \begin{example}[Задача о пищевом рационе]
+	  Есть набор питания $P_1,\dots P_{N}$ ,
+	  стоимостью $c_1 \dots c_{N}$ 
+	  за единицу продукта. Пусть
+	  весовая едтгтца каждого продукта
+	  содержит $a_{i1}$ белка, $a_{i 2}$ жиров,
+	  $a_{i 3}$ углеводов, $a_{i 4}, a_{i 5}, a_{i 6}$ 
+	  Нужно приобрести такое количесвто продуктов, чтоб
+	  их стоимость была минимальна, а составленый рацион соедержал $b_{j} j = 1 \dots 6$ жиров и прочего (гдето равенства, где то $\le $)
+
+	  Это можно записать в виде таблицы
+
+	  \begin{equation}
+	  X = (x_1 \dots x_{n})
+	  \end{equation} 
+	  Количества продуктов
+	  \begin{equation}
+	  f(X) = \sum_{i= 1}^{N} c_{i} x_{i} \to \min
+	  \end{equation} 
+	  Целевая функция
+	  \begin{equation}
+	  \sum_{i =1}^{N} a_{i 1} x_{i} \ge  b_1
+	  \end{equation} 
+	  Задали ограничения .  Естественные ограничения $x_{i}\ge 0, i =1 \dots N$
+  \end{example}
+  \begin{example}[Распределение ресурсов]
+		\begin{enumerate}
+			\item $P_1,P_2,\dots,P_{N}$ 
+				продукция
+			\item $R_1,R_2,\dots R_{M}$ сырье в количестве 
+				$b_1,b_2,\dots b_{M}$ 
+			\item стоимость едницы ресурсов $d_1 \dots d_{M}$
+		\end{enumerate}
+		Сколько надо выпустить продукции чтобы получить
+		максимум прибыль
+		\begin{equation}
+		f(X) = \sum_{i =1}^{N} c_{i} x_{i} -
+		\sum_{i = 1}^{N} \left( c_{i} - \sum_{j=1}^{M} a_{ji} dj\right) x_{i} \to \max
+		\end{equation} 
+  \end{example}
+  \begin{example}[Загрузка оборудования]
+	  Есть три типа станков $N_1,N_2,N_3$
+	  станки производят 6 видов продукции $P_{j},j=1 \dots 6$ . $P_{j}$ приносит доод $c_{j}$. 
+	  План $\ge   b_{j}$ продукции $P_{j}$
+  \end{example}
 \end{document}
  
