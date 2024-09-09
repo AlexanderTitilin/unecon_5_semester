@@ -6,12 +6,15 @@
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{listings}
 \usepackage{indentfirst}
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
+\newcommand{\bm}[1]{ \left.#1\right|}
 \newtheorem{theorem}{Теорема}
-\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{definition}{Определение}
+\newtheorem{corollary}{Замечание}
 \newtheorem{lemma}[theorem]{Лемма}
 \title{Матстата}
 \author{}
@@ -204,7 +207,285 @@
  \begin{equation}
  	Mo = \frac{a - 1}{b} ,a\ge 1
  \end{equation}
- \begin{equation}
+\begin{equation}
  	f'(x) = 0
- \end{equation}
+\end{equation}
+\section{Некоторые другие законы}
+\subsection{Распределение Парето}
+\begin{equation}
+f(x) + \frac{\alpha	}{c_0} (\frac{c_0}{x})^{\alpha +1}, x\ge  c_0, \alpha >0 ,c_0 >0
+\end{equation} 
+Связано с налогами (доход превосходит $c_0$)
+\begin{equation}
+F(x) = 1 - \left(\frac{c_0}{x}\right)^{\alpha}
+\end{equation} 
+\begin{equation}
+\int\limits_{-\infty}^{+\infty} x * f(x) dx =
+\int\limits_{-\infty}^{+\infty} \frac{\alpha}{c_0} \left(
+\frac{c_0}{x}\right)^{\alpha} = 
+\int\limits_{c_0}^{+\infty}  \frac{\alpha}{c_0} 
+(\frac{c_0}{x})^{\alpha} =
+\frac{\alpha}{c_0} (\lim_{x \to \infty} )
+\end{equation} 
+\begin{equation}
+M(x^2) = 
+\frac{\alpha}{c_0} * c^{\alpha+1} \int\limits_{c_0}^{+\infty}   (x)^{-\alpha - 1} dx = 
+\alpha c^{\alpha} \bm{\frac{1}{- \alpha} x^{-\alpha}}_{c_0}^{+\infty}
+\end{equation} 
+\begin{equation}
+	1 - (\frac{c_0}{x})^{\alpha} =
+	 \frac{1}{2}
+\end{equation} 
+\begin{equation}
+x^{\alpha} = 2c_0^{\alpha}
+\end{equation} 
+\subsection{Рапределение Коши}
+\begin{equation}
+f(x) = \frac{c}{\pi (c^2 + (x - \alpha)^2)}, x \in \mathbb{R}
+\end{equation} 
+\begin{equation}
+\int \frac{c}{\pi (c^2 + (x - \alpha)^2)} d(x - \alpha) =
+\frac{c}{\pi} \left(\frac{1}{c} \arctan{\frac{x - \alpha}{c}}\right) + c = \frac{1}{\pi} \arctan{\frac{x - \alpha}{c}} + c
+\end{equation} 
+\subsection{Свойства устойчивости рапределения Коши}
+\begin{enumerate}
+	\item Если случайная величина
+		$X$ распределена по закону Коши с параметрами
+		 $c,\alpha$ ,
+		 тогда  $Y = b_0 + b_1 X$ 
+		 имеет распределение с параметрами $c' = |b_1| c$, $\alpha' = b_1 \alpha + b_0$
+
+\begin{equation}
+f_{a X + b} (x) = f_{X} \left(\frac{x-b}{a}\right) * \frac{1}{|a|}
+\end{equation} 
+\item Если есть независимые случайно расределенные случанйые
+	величины $X_1,\dots,X_{n}$ 
+	имееют распределение Коши, то $\overline{X} = \frac{1}{n}\sum_{i = 1}^{n} X_{i}$
+\end{enumerate}
+Доказать дома $n = 2,c=1,\alpha = 0$
+\subsection{Распределения Рэлея}
+\begin{equation}
+f(x) = 
+\begin{cases}
+	2 \lambda x e ^{-\lambda x^2} , x\ge 0\\
+	0 , x < 0
+\end{cases}
+( \lambda  > 0 )
+\end{equation} 
+\begin{equation}
+\int 2 \lambda x e^{-\lambda x^2} dx = 
+\int \lambda e^{-\lambda x^2} d x^2 =
+- e^{-\lambda x^2} + C
+\end{equation} 
+\begin{equation}
+\int\limits_{0}^{x} f(x)  = -e^{-\lambda x^2} + 1
+\end{equation} 
+\begin{equation}
+F(X) = 
+\begin{cases}
+	1  - e^{- \lambda x^2} x\ge 0\\
+	0 , x< 0
+\end{cases}
+\end{equation} 
+\begin{equation}
+	\begin{split}
+	f(x)' = 
+	2\lambda(e^{-\lambda x^2} + x*(-\lambda 2x *e^{-\lambda x^2})) = 
+	2 \lambda (e^{-\lambda x^2} - 2\lambda x^2 *e^{-\lambda x^2}) = \\
+	2\lambda* e^{-\lambda x^2} (1 - 2\lambda x^2)
+	\end{split}
+\end{equation} 
+$y = 0$ горизонтальная асимптота при $x \to +\infty$
+\begin{equation}
+	\int 2 \lambda x^2 e^{-1}
+\end{equation} 
+\subsection{Распредления для статов}
+\subsubsection{Распределение хи квадрат с m степенями свободы}
+\begin{definition}
+	Пусть случайные величны $X_1,X_2,\dots,X_{m} \sim N(0,1)$ и независимы $Z = \sum_{i=1}^{M} X_{i}^2$
+	\begin{equation}
+	\chi^2_{m}
+	\end{equation} 
+\end{definition}
+\begin{equation}
+f_{\chi_{m}^2}(x) = 0 , x<0
+\end{equation} 
+\begin{equation}
+f_{\chi_{m}^2}(x) = \frac{1}{2^{\frac{m}{2}} \Gamma(\frac{M}{2})}
+x
+\end{equation} 
+\begin{equation}
+M(\chi_{M}^2) = m , D(\chi_{m} ^2) =  2m
+\end{equation} 
+\subsection{Распеределение Стьюдента с $m$ степенями свободы}
+\begin{definition}
+	Случайнык величины $X_0 \dots X_{m} \sim N(0,1)$ 
+	и независимы 
+	\begin{equation}
+	Z = \frac{X_0}{\sqrt{\frac{1}{m} \sum_{i=1}^{m}X_{i}^2} }
+	\end{equation} 
+	\begin{equation}
+	Z = t_{m}
+	\end{equation} 
+\end{definition}
+\begin{equation}
+f_{t_{m}}(x)  = \frac{1}{\sqrt{\pi m} } \frac{\Gamma(\frac{m+1}{2})}{\Gamma(\frac{m}{2})} * \left(1 + \frac{x^2}{m}\right)^{- \frac{m+1}{2}}
+\end{equation} 
+Это четная унимодальная $(Mo(t_{m}) = 0)$ функция
+\begin{equation}
+t_{m} = \frac{X_0}{\sqrt{\frac{\chi_{m}^2}{m}} }
+\end{equation} 
+\begin{equation}
+M(t_{m}) = Mo(t_{m}) = me(t_{m}) = 0
+\end{equation} 
+\begin{equation}
+D(t_{m}) =  \frac{m}{m - 2} , m > 2
+\end{equation} 
+\subsubsection{Раcпределение Фишера-Снедекора}
+\begin{equation}
+F(m_1,m_2)
+\end{equation} 
+\begin{definition}
+	Даны случайные величины $X_1,X_2,\dots X_{m_1}, Y_1,Y_2,\dots,Y_{m_2} \sim N(0,1)$
+	\begin{equation}
+	Z = \frac{\frac{1}{m_1} \sum_{i=1}^{m_1} X_{i}^{m_1}}{\frac{1}{m_2} \sum_{i=1}^{m_2}Y^2_{i}}
+	\end{equation} 
+\end{definition}
+\begin{equation}
+f_{F_{m_1,m_2}}(x) =
+\frac{\Gamma(\frac{m_1 + m_2}{2}) * m_1^{\frac{m_1}{2}}*m_2^{\frac{m_2}{2}}}{\Gamma(\frac{m_1}{2}) \Gamma(\frac{m_2}{2})}
+* \frac{x^{\frac{m_1}{2} - 1}}{(m_1 x + m_2)^{\frac{m_1+m_2}{2}}}
+\end{equation} 
+\begin{equation}
+	f_{F_{m_1,m_2}}(x) = 0 , x < 0
+\end{equation} 
+\begin{equation}
+F_{m_1,m_2} = \frac{\frac{1}{m_1} \chi^2_{m_1}}{\frac{1}{m_2}\chi^2_{m_2}}
+\end{equation} 
+\begin{equation}
+\frac{1}{F_{m_1,m_2}} \sim F_{m_2, m_1}
+\end{equation} 
+\begin{equation}
+M(F_{m_1,m_2}) = \frac{m_2}{m_2-1}
+\end{equation} 
+\begin{equation}
+D(m_1,m_2) = \frac{2m_2 ^2 (m_1 + m_2 - 2)}{m_1 (m_2 - 2) ^2 (m_2 - 4)}
+\end{equation} 
+\begin{equation}
+Mo(F_{m_1,m_2}) = \frac{(m_1 - 2)m_2}{m_1 (m_2 + 2)}
+\end{equation} 
+Пусть $\Omega = \{\omega_1,\omega_2,\dots \omega_{j}\}$
+\begin{equation}
+P(\omega_{i_1},\dots \omega_{i_{n}}) = \prod_{j = 1}^{n} p_{i_{j}}
+\end{equation} 
+Рассмотрим последоваьельность
+случайных зависимых  величин
+
+Введем дискретное время $t$ и 
+случайную величину  $\xi_{t}(\omega)$ 
+значение которой определяют в каком состояни
+находился объек во время $t$ 
+ в любой следущий момент времени объект может сменить 
+ состояние
+\section{Определение цеи Маркова}
+\begin{definition}
+	Состояния объекта в момент $t$ 
+	характеризуется ограниченной памятью
+	 \begin{equation}
+		 P(\xi_{t} = j \mid \xi_{1} = 1 , \xi_{t-1} = i) = P(\xi_{t} = j | \xi_{t- 1} = i)
+	\end{equation} 
+	Это зависимость марковского типа. Такие зависиости наываются цепями Маркова
+
+	Если дополнительно предположить что
+	$p^{(1)}_{ij} = P(\xi_{t} = j \mid \xi_{t-1} =i)$ 
+	независят от $t$ то такая цепь называется однородной
+\end{definition}
+\begin{definition}
+	Последоватльеность случайных величин $\xi_{1},\xi_2,\dots$ любая из которых может принимать конечное число значений
+	$x^{0}_{1},\dots_{j}^{0}$ называется однородной цепь Маркова, если
+	\begin{equation}
+	P(\xi_1 = x^{0}_{i_1} \dots \xi_{t} = x_{i_{t}}^{0}) 
+	\end{equation} 
+\end{definition}
+\begin{corollary}
+	В общем случае можно рассмотреть  дискретное вероятностное
+	простанство с счетным множеством исходов
+\end{corollary}
+\begin{theorem}
+	\begin{enumerate}
+		\item  $\sum_{i_{1}} \sum_{i_2} \dots \sum_{i_{t}} p_{i_1} p_{i_1 i_2} \dots p_{i_{t-1}i_{t}} = 0$
+	\end{enumerate}
+\end{theorem}
+\subsection{Основные характеристики цепей Маркова}
+Исходные характеристики
+\begin{enumerate}
+	\item вектор вероятностей начального
+		распределения $p = (p_1,p_2,\dots,p_{j})^{T}$
+	 \item Матрица $P$ переходных веоятностей  $p_{ij}$
+\end{enumerate}
+Производные характеристики
+\begin{enumerate}
+	\item  Вероятность перехода из
+		состояния $i$ в состояние  $j$ за
+		 $t$ тактов времении:
+		  \begin{equation}
+			  p_{ij}^{(t)} = 
+			  \sum_{q = 1}^{J}p_{iq}^{(t-1)} p_{qj}
+		 \end{equation} 
+		Если обозначить $P^{q}$ 
+		матрица перехода за q
+		шагов то эта формула в матричнос виде
+		\begin{equation}
+		P^{(t)}  =P^{(t-1)}p
+		\end{equation} 
+		\begin{equation}
+		P^{(t)} = P^{t}
+		\end{equation} 
+	\item Безуслованя веростноять $p_{j}^{(t)}$ 
+		того, что объект в 
+		момент времени $t$ находится в состоянии  $k$:
+		 \begin{equation}
+		p_{j}^{t} = \sum_{i =1}^{j} p_{i} p_{ij}^{(t-1)}
+		\end{equation} 
+		вероятность $p_{ij}^{(t-1)}$ 
+		образуют $j$-ый столбец матрицы  $P^{(t-1)}$
+	\item Вероятность первого возарвщения объекта
+		в заданное состояние
+		обозначается
+		\begin{equation}
+		f^{t}_{jj}A = P\left(
+		\xi_{t+1} = j; \xi_{t} \neq j;\xi_{t-1} \neq j \dots  \xi_{2} \neq j \mid \xi_{i} = j
+		\right)
+		\end{equation} 
+		Вероятность первого возвращаения в состояние $j$ через  $t$ шагов
+		\begin{equation}
+		f^{(t)}_{jj} =  \sum_{t=1}^{\infty} f_jj^{(t)}
+		\end{equation} 
+		Вероятность того что объект когда нибудь
+		вернется в состояние $j$
+
+		 \begin{equation}
+			 \mu_{jj} = \sum_{t = 1}^{\infty} t f_{jj}^{(t)}
+		\end{equation} 
+
+среднее время первого возвращения в состояние $j$ при условии  $f_{jj} = 1$
+\end{enumerate}
+\subsection{Классификация состоянийи}
+\begin{definition}
+	Состояние $j$ 
+	называется достижимым из состояни  $j$<
+	если  $\exists  t_0 \ge  1$  $p_{ij}^{(t_0)} > 0$
+\end{definition}
+\begin{definition}
+	Состояние $i$ называют поглощающим
+	если из него не может быть достигнуто никакое другое состояние цепи
+\end{definition}
+\begin{definition}
+	Множество состояниий называется поглащаюшим или замкнутым,есл никакое состояние вне $C$ не может быть достигнуто
+	ни пз кого состоянмя вхоядщего в  $C$
+\end{definition}
+\begin{definition}
+	Состояние называется возвратным, если, отпавляюсь от него обхект с вероятность 1 когда нибудь в него вернется
+\end{definition}
+\subsection{Классификация цепей}
 \end{document}
