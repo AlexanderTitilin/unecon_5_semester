@@ -121,4 +121,133 @@
 		$b_{ij}$ -- количество продукции отрасли $i$ 
 		используемое для производства единицы конечного продукта отрасли  $j$
 	\end{definition}
+\subsection{Производственная Функция}
+\begin{definition}
+	Производственная функция $F$ -- 
+	функция выражающая зависимость между
+	затратами ресурсов и объемами выпуска
+\end{definition}
+\begin{enumerate}
+	\item $\overline{X}$  векор используемых ресурсов
+	\item $\overline{Y}$ объемы выпуска продукции каждого вида
+\end{enumerate}
+\subsection{Свойства неоклассических производственных функциий}
+$F(x_1,x_2,\dots,x_{n})$ должна быть достаточно гладкой
+хотя бы дважды дифферинцируема
+\begin{definition}[Производственная функция]
+	\label{pf}
+	\begin{enumerate}
+		\item $F(X) = 0$ ,ecли  $\exists  x_{i} = 0$
+		\item $F$ возрастает по каждому аргументу  $\frac{\partial F}{\partial x_{i}}> 0$ 
+		\item Выпуск по каждому аргументу неограничен
+		\item $\frac{\partial ^2 F}{\partial x_{i}^2} < 0$
+	\end{enumerate}
+\end{definition}
+\begin{definition}[Однородная функция]
+	\begin{equation}
+	F(\lambda x_1,\dots,\lambda x_{n}) = \lambda^{\gamma}(x_1,x_2,\dots,x_{n})
+	\end{equation} 
+\end{definition}
+\begin{definition}[Линейная однородность]
+	\begin{equation}
+	F(\lambda X) = \lambda F(X)
+	\end{equation} 
+\end{definition}
+\begin{enumerate}
+	\item Целевой показатель $Y$ валовый внутренний продукт
+\end{enumerate}\
+\begin{enumerate}
+	\item $K$ основные проиводственные фонды
+	\item  $L$ число занятых
+\end{enumerate}
+$F(K,L)$ соответвует \ref{pf}
+\begin{equation}
+Y = A* K^{\alpha} L^{\beta}
+\end{equation} 
+\begin{enumerate}
+	\item $A > 0$
+	\item  $0 < \alpha < 1$
+	\item  $0 < \beta < 1$
+\end{enumerate}
+Это производственная функция Кобба-Дугласа
+\begin{equation}
+Y = A K^{\alpha} L^{\beta}
+\end{equation} 
+\begin{enumerate}
+	\item Для оценки будем использовать метод наименьших квадратов;
+	\item Потребуются исторические данные $(K_{i},L_{i},Y_{i})_{i}^{i = M}$ 
+	\begin{equation}
+		\ln{Y} + \alpha + \alpha\ln{K} + \beta \ln{L}
+	\end{equation} 
+	Мы выполнили линерализацию
+\end{enumerate}
+\begin{equation}
+S(A,\alpha,\beta) = 
+\sum_{i = 1}^{M} \left(\ln \alpha + \alpha \ln K_{i} + \beta \ln L_{i} -
+\ln Y_{i}\right)^2  \to \min
+\end{equation} 
+\begin{equation}
+	\begin{cases}
+	\frac{\partial S}{\partial \ln A} = 0\\
+	\frac{\partial S}{\partial \alpha}  = 0\\
+	\frac{\partial S}{\partial \beta}  = 0
+	\end{cases}
+\end{equation} 
+\begin{equation}
+\begin{cases}
+	2\sum_{i = 1}^{M} (\ln{A} + \alpha \ln{K_{i}} +
+	\beta \ln L_{i}  - \ln Y_{i})*1 = 0\\
+	2 \sum_{i = 1}^{M} (\ln A + \alpha \ln K_{i} + \beta
+	\ln L_{i} -  \ln Y_{i}) * \ln K_{i} = 0\\
+	2 \sum_{i = 1}^{M} (\ln A + \alpha \ln K_{i} + \beta
+	\ln L_{i} -  \ln Y_{i}) * \ln L_{i} = 0\\
+\end{cases}
+\end{equation} 
+\begin{equation}
+\begin{cases}
+	M \ln A + \alpha \sum_{i =1}^{M} \ln K_{i}A + 
+	\beta \sum_{i=1}^{M} \ln L_{i} = \sum_{i=1}^{M} \ln{Y_{i}}\\
+	\ln A \sum_{i=1}^{M} \ln K_{i} +
+	\alpha \sum_{i =1}^{M} \ln^2 K_{i} +
+	\beta \sum_{i = 1}^{M} \ln K_{i} \ln L_{i} = \sum_{i=1}^{M} \ln Y_{i} \ln K_{i}\\
+	\ln A \sum_{i=1}^{M} \ln L_{i} + 
+	\alpha \sum_{i=1}^{M}\ln K_{i} \ln L_{i} +
+	\beta \sum_{i=1}^{M} \ln^2 L_{i} =
+	\sum_{i =1}^{M} \ln{Y_{i}}\ln L_{i}\\
+\end{cases}
+\end{equation} 
+Рассмотрим такую 
+\begin{equation}
+Y = A K^{\alpha} * L^{1 - \alpha}
+\end{equation} 
+\begin{equation}
+	\ln Y = \ln{A} + \alpha \ln{K} +(1-\alpha) \ln{L} =
+	\ln A + \alpha (\ln \frac{K}{L}) + \ln{L}
+\end{equation} 
+\begin{equation}
+S(A,\alpha) = 
+\sum_{i = 1}^{M} (\ln A + \alpha \left(\frac{\ln K_{i}}{\ln L_{i}}\right)- \ln Y_{i} + \ln L)^2 \to \min
+\end{equation} 
+\subsection{Изокванты}
+множество наборов при которых уровень производства не меняется.
+
+$K-L$ изокватны -- линии равного уровня выпуска продукции
+
+\begin{equation}
+c_1 = A K^{\alpha} * L^{\beta}
+\end{equation} 
+\begin{equation}
+K^{\alpha} = \frac{c_1}{A L^{\beta}}
+\end{equation} 
+\begin{equation}
+K = \left(\frac{c_1}{A}\right)^{\frac{1}{\alpha}} * L^{\frac{- \beta}{\alpha}}
+\end{equation} 
+\section{Практика}
+две модели $\alpha + \beta = 1, \alpha +\beta \neq b$
+\begin{enumerate}
+	\item Реализоать поиск $A,\alpha,\beta$ 
+	\item  Вывести таблцу
+	\item график зависимоти $Y$ от  $K$, исторические данные
+	\item построить 3 изокванты для  $\alpha + \beta \neq 1$
+\end{enumerate}
 \end{document}
