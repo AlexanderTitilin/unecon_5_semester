@@ -4,11 +4,13 @@
 \setmainfont{Times New Roman}
 \usepackage{amssymb}
 \usepackage{setspace}
+\usepackage{tikz}
 \onehalfspacing
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{listings}
 \usepackage{indentfirst}
+\usepackage{graphicx}
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
@@ -351,4 +353,391 @@
 \begin{equation}
 \frac{\partial U}{\partial x_{1}} dx_1 + \frac{\partial U}{\partial x_2} dx_2 = 0
 \end{equation} 
-\end{document}
+\begin{equation}
+\frac{\partial U}{\partial x_2}dx_2
+=-\frac{\partial U}{\partial x_1} dx_1
+\end{equation} 
+\begin{equation}
+	\frac{d x_2}{dx_1}  = -\frac{\frac{\partial U}{\partial x_1}}{\frac{\partial U}{\partial x_2}}
+\end{equation} 
+Это $\mrs$
+\begin{example}[квазилинейная функция]
+	\begin{equation}
+	U(x_1,x_2) = f(x_1) =x_2
+	\end{equation} 
+	\begin{equation}
+	\frac{\partial U}{\partial x_1} = f'(x_1)
+	\end{equation} 
+	\begin{equation}
+	\frac{\partial U}{\partial x_2} = 1
+	\end{equation} 
+	\begin{equation}
+	\mrs = -\frac{\frac{\partial U}{\partial x_1}}{\frac{\partial U}{\partial x_2}} = - f'(x_1)
+	\end{equation} 
+	$\mrs$ не зависит от  $x_2$,
+	наклон кривой безразличия постоянен во
+	всех точках с фиксированным $x_1$
+	(вдоль вертикальной линии, исходящей из точки ($x_1,0$))
+\end{example}
+\subsection{Монотонное преобразование функции
+полезности и MRS}
+Что происходит с предельной нормой замены при замене некоторой исходной функции ее монотонно возрастающим преобразованием.
+
+\begin{enumerate}
+	\item $U(x_1,x_2) = x_1 x_2 , \mrs = -\frac{x_2}{x_1}$
+	\item $V = U^2$
+	\item $V(x_1,x_2) = x_1^2 x_2^2$
+		\begin{equation}
+		\mrs = -\frac{x_2}{x_1}
+		\end{equation} 
+\end{enumerate}
+В общем случае $V = f(U)$ , $f$ строго возрастает
+ \begin{equation}
+-\frac{\frac{\partial V}{\partial x_1}}{\frac{\partial V}{\partial x_2}} =- \frac{\frac{\partial U}{\partial x_1}}{\frac{\partial U}{\partial x_2}}
+\end{equation} 
+$\mrs$ инвариантно относительного любого
+монотонно возрастающего преобразования функции полезности
+\section{Выбор потребителя}
+\subsection{Рациональный выор пр наличии ограничений}
+\begin{enumerate}
+	\item Наиболее предпочтительнй набор благ из числа доступных
+		называется индвидуальным спросом
+		при заданных ценах и доходе;
+\end{enumerate}
+В случае $x_1^{*} > 0, x_2^{*}>0$ 
+то потребительский набор называется внутренним решением задачи
+максмизаци полезности при наличии бюджетного ограничения
+
+Если на приобретение
+набора благ $(x_1^{*},x_2^{*})$ 
+требуется $\$m$, то в этом случае расходуется весь доход
+
+Наклон касательной и наклон бюджетной линии совпадают
+
+Набор  $(x_1^{*},x_2^{*})$ 
+представляет собойй решение экстремальной задачи,
+описывающей потребительский выбор. Модель максимализации
+полезность
+\begin{equation}
+\begin{cases}
+	u(x_1,\dots,x_{n}) \to \max\\
+	\sum_{i = 1}^{n} p_{i} x_{i} \le  m
+\end{cases}
+\end{equation} 
+Если система представлена неоклассической потребность
+$u(x)$ то решение с помощью метода лагранжа
+
+ $u(x)$ описывает, рациональное, монотонное, выпуклое и
+ непрерывное предпочтение
+
+ функция полезность дважды непреывна дифференцируема
+ \begin{equation}
+	 u_{ij} (x) = \frac{\partial ^2 u(x)}{\partial x_{i} 
+	 x_{j}}  i , j = 1 \dots n
+ \end{equation} 
+ \begin{equation}
+ M U_{i}(x) = \frac{\partial u(x)}{\partial x_{i}} \ge 0
+ \end{equation} 
+ \begin{equation}
+ MU (x) = (\frac{\partial u(x)}{\partial x_{i}})_{i= 1 \dots n} = 0
+ \end{equation} 
+ Функция полезности является матрица Гессе 
+ \begin{equation}
+ H^{u}(x) =  (\frac{\partial ^2 u(x)}{\partial x_{i} \partial x_{j} })
+ \end{equation} 
+ Отрицательно определена, в частности 
+ $\frac{\partial ^2 u(x)}{\partial x_{i}^2} < 0$
+
+ В точке оптимального выбора потребител $x^{*} = (x_1 ^*,
+ \dots x_{n}^{*}$ 
+ \begin{equation}
+ MU _{i}(x^{*}) = \frac{\partial u(x^{*})}{\partial x_{i}} = \lambda p_{i}
+ \end{equation} 
+ \begin{equation}
+ \frac{\partial u(x^{*})}{\partial x_{i}} :
+ \frac{\partial u (x^{*})}{\partial x_{j}} = \frac{p_{i}}{p_{j}}
+ \end{equation} 
+ Предельная норма замены товара $j$ товаром  $i$
+ \begin{equation}
+ \mrs_{ij}(x^{*}) = 
+ \frac{dx_{i}}{d x_{j}}(x^{*}) = 
+ -\frac{\partial u(x^{*})}{\partial x_{j}} :
+ \frac{\partial u(x^{*})}{\partial x_{i}} = -\frac{p_{j}}{p_{i}} i,j  = 1 \dots n
+ \end{equation} 
+ \begin{equation}
+ \frac{\partial u(x^{*})}{\partial x_{j}}  : p_{j} =
+ \frac{\partial u(x^{*})}{\partial x_{i}} :p_{i}
+ \end{equation} 
+ Для решения задачи ММП нужны необходимые условия Куна-Таккера
+
+ Если набор благ $x^{*}(p,M)$ 
+ являетя оптимальным, то существует множитель лагранжа
+ $\lambda > 0$ , такой что
+  \begin{equation}
+	  \frac{\partial u(x^{*}(p,M))}{\partial x_{j}} \le  \lambda p_{j}
+ \end{equation} 
+ \subsection{Кобб-Дуглас}
+ \begin{equation}
+ U(x_1,x_2) = x_1^{a} x_2^{b}
+ \end{equation} 
+ \begin{equation}
+ M U_{1} = \frac{\partial U }{\partial x_1} = a x_1^{a- 1} x_2^{b}
+ \end{equation} 
+ \begin{equation}
+ MU_2 = \frac{\partial U}{\partial x_2} = bx_1^{a} x_2^{b-1}
+ \end{equation} 
+ \begin{equation}
+ \mrs = - \frac{\frac{\partial U}{\partial x_1}}{\frac{\partial U}{\partial x_2}} = -1\frac{ax_2}{bx_2}
+ \end{equation} 
+ В точке $x^{*}$ $\mrs = - \frac{p_1}{p_2}$ 
+ \begin{equation}
+ - \frac{a x_{2}^{*}}{b x_{1}^{*}} = -\frac{p_1}{p_2}
+ \end{equation} 
+ \begin{equation}
+ x^{*}_{2} = \frac{b p_1}{a p_2} x_2^{*}
+ \end{equation} 
+ \begin{equation}
+ p_1 x_1^{*} + p_2 x^{*}_{2} = m
+ \end{equation} 
+ \begin{equation}
+ p_1 x_1^{*} + p_2 \frac{b p_1}{a p_2} x^{1} =m
+ \end{equation} 
+ \begin{equation}
+ x_1^{*} = \frac{am}{(a+b)p_1}
+ \end{equation} 
+ \begin{equation}
+ x^{*}_{2} = \frac{bm}{(a + b) p_2}
+ \end{equation} 
+ \begin{equation}
+	 (x_1^{*}, x_2^{*}) = 
+	 \left(\frac{am}{(a+b) p_1},\frac{bm}{(a+b)p_2}\right)
+ \end{equation} 
+ \section{Рациональный выбор при наличии ограничений}
+ Если одно из благ нулевое, то эта ситуация
+ называется угловым решением
+ задачи максимализации полезности при наличии
+ бюджетного ограничени
+
+ Если $U = x_1 + x_2$ , то наиболее предпочтительный набор
+ \begin{equation}
+	 (x_1^{*} ,x_2^{*}) = \left(\frac{m}{p_1},0\right), p_1<p_2
+ \end{equation} 
+ \begin{equation}
+	 (x_1^{*},x_2^{*}) = \left(0,\frac{m}{p_2}\right), p_1 > p_2
+ \end{equation} 
+ При $p_1 = p_2$ все, расположенные на линии бюджетного
+ ограничения наборы благ, оказыввются наиболее предпочтительными
+ \begin{definition}[Функция Леонтьевского типа]
+	 \begin{equation}
+	 U(x_1,x_2) =  \min(ax_1,x_2)
+	 \end{equation} 
+ \end{definition}
+ \begin{equation}
+ p_1 x_1^{*}  + p_2 x_2^{*} = m
+ \end{equation} 
+ \begin{equation}
+ x_2^{*} =  a x_1^{*}
+ \end{equation} 
+ \begin{equation}
+ x_1^{*}  = \frac{m}{p_1 + a p_2} ; x_2^{*} = \frac{am}{p_1 + ap_2}
+ \end{equation} 
+ Набор из 1 единицы блага 1 и $a$ единиц блага 2 стоит  $p_1 + a p_2$. Оптимальными являютя наборы $\frac{m}{p_1 + a p_2}$
+ \section{Индвидуальный спрос}
+ Анализ сравнительной статики функций индвидуального спроса --
+ исселдование характера измененния спроса потребителя
+ на представленные в наборе блага
+ $x_1^{*}(p_1,p_2,m)$, $x_2^{*}(p_1,p_2,m)$ на вариацию в значения рыночных цен $p_1,p_2$ дохода потребителя $m = y$
+ \subsection{кривая цена потребления для Кобба Дугласа}
+ \begin{equation}
+ U(x_1,x_2) = x_1^{\alpha} x_2^{\beta}
+ \end{equation} 
+ \begin{equation}
+ x_1^{*} (p_1,p_2,m) = \frac{a}{a+b} \times \frac{m}{p_1}
+ \end{equation} 
+ \begin{equation}
+ x_2^{*} (p_1,p_2,m) = \frac{b}{a+b} \times \frac{m}{p_2}
+ \end{equation} 
+ Кривая цена-потребления для блага 2 по  $p_1$ есть прямая линия,
+ для блага $1$ она гипербола.
+ \subsection{Взаимо дополняющие блага }
+ Если функция такая, то
+ \begin{equation}
+	 U = \max{x_1,x_2}
+ \end{equation} 
+ \begin{equation}
+ x_1^{*}(p_1,p_2,m) = x_2^{*}(p_2,p_2,m) = \frac{m}{p_1 + p_2}
+ \end{equation} 
+ При заданных $p_2,m$ большие значения $p_1$ приводят к меньшим
+ занчениям $x_1^{*},x_2^{*}$
+ \begin{equation}
+ p_1 \to 0, x_1^{*} = x_2^{*} \to \frac{m}{p_2}
+ \end{equation} 
+ \begin{equation}
+ p_1 \to \infty , x_1^{*} = x_2^{*} \to 0
+ \end{equation} 
+ \subsection{Изменение спроса на благо по собственной цене}
+ Рассматривая востребованное количечество блага
+ в качестве заданной величины и выясняя цену, по
+ которой потребитель
+ \begin{equation}
+ x_1^{*} = \frac{a m}{(a + b) p_1}
+ \end{equation} 
+ \begin{equation}
+ p_1 = \frac{a m}{(a + b) x_1^{*}}
+ \end{equation} 
+ \begin{equation}
+ x_1^{*} = \frac{y}{p_1 + p_2}  \implies \frac{y}{x_1^{*}} - p_2
+ \end{equation} 
+% \begin{tikzpicture}
+% 	\draw[->] (0,0) -- (0,10);
+% 	\draw[->](0,0) -- (10,0);
+% \end{tikzpicture}
+ \begin{definition}[Кривая Энгеля]
+	 График зависимости 
+	 между величиной спроса потребителя на благо
+	 от величины его дохода называется
+	 кривой Энгеля
+ \end{definition}
+ \subsection{Изменение по доходу в случае предпочтений Кобба-Дугласа}
+ \begin{equation}
+ y = \frac{( a + b )p_1}{a} x_1^{*}
+ \end{equation} 
+ \begin{equation}
+ y = \frac{( a + b ) p_2}{b} x_2^{*}
+ \end{equation} 
+ Если функция полезность $U = \min {x_1,x_2}$
+ \begin{equation}
+ y = (p_1 + p_2) x_1^{*}
+ \end{equation} 
+ \begin{equation}
+	 y = (p_1 + p_2) x_2 ^{*}
+ \end{equation} 
+ прямые тоже
+ \begin{equation}
+ U(x_1,x_2) = x_1 + x_2
+ \end{equation} 
+ \begin{equation}
+ x_1^{*}(p_1,p_2,y) =
+ \begin{cases}
+ 	0, p_1 > p_2\\
+	\frac{y}{p_1} p_1 < p_2
+ \end{cases}
+ \end{equation} 
+ \begin{equation}
+ x_w^{*}(p_1,p_2,y) =
+ \begin{cases}
+ 	0, p_1 < p_2\\
+	\frac{y}{p_2} p_1 > p_2
+ \end{cases}
+ \end{equation} 
+ \begin{equation}
+ x_1^{*} = \frac{y}{p_1} ,x_2^{*} = 0 , p_1 < p_2
+ \end{equation} 
+ Прямая Энгеля представляется в форме
+ линейной зависимости в случае, когда отношение
+ предпочтение является гомотетичным
+ \begin{definition}[Гомотичное отношение]
+	 $\forall  k > 0$ 
+	 \begin{equation}
+		 (x_1,x_2) \to (y_1,y_2) \equiv
+		 (kx_1,kx_2) \to (ky_1,ky_2)
+	 \end{equation} 
+	 Гомотетичность отношения предпочтения
+	 означает,  что предельная норма замены
+	 благ $\mrs$ неизменная вдоль лучей, исходящих
+	 сз начала координат
+ \end{definition}
+ \subsection{Пример негомотичного отношения}
+ \begin{equation}
+ U = f(x_1) + x_2
+ \end{equation} 
+ \begin{definition}
+	 Функция однородна степени $k$  если $f(\lambda x) = \lambda^{k} f(x)$
+ \end{definition}
+ \begin{definition}[Линейно однородная функция]
+	 $f(\lambda x) = \lambda f(x)$
+ \end{definition}
+ \begin{definition}[Однородность нулевой стеени]
+	 $f:\mathbb{R}^{N} \to \mathbb{R}, \forall  \lambda > 0 ,f(\lambda x) = f(x)$
+ \end{definition}
+ \begin{definition}[Гомотетичная функция]
+ 	$f: \mathbb{R}^{N} \to \mathbb{R}$ 
+	называется гомотетичной, если она представима в виде
+	$f(x) = g(h(x))$ ,  $g\mathbb{R} \to \mathbb{R}$ 
+	является строго возрастаяющей, а $h:\mathbb{R}^{N} \to \mathbb{R}$ является линейно однородной
+ \end{definition}
+ Обозначим через $x^{*}_{i} (p_{i}) $ 
+ функцию задающую кривую спроса, при фиксированных значениях 
+ всех цен, коме $i$-ой и дохода  $y$
+
+ \subsection{Эффект дохода}
+ Если для блага ( товара )  $i$ выполняется
+ $\frac{\Delta x_{i}^{*}}{\Delta y} > 0$ 
+ спрос растет при увелчении потребителя, то оно называется
+ нормальным, кривая Энегеля имеет положительный наклон.
+
+ Если $\frac{\Delta x_{i}^{*}}{\Delta y}$ то он малоценный по 
+ доходу. Кривая энгеля имеет отрицательный наклон
+
+ Благо $i$ называется обычным, если с увеличением его собственной
+ цены  $p_{i}$ цена  спрос убывает. Кривая спроса имеет отрицательный наклок
+
+ Если при увелечение цены, спрос растет, то такое благо называется
+ Гиффиновым благом.
+
+ \subsection{Кривые Торнкиста}
+ \begin{enumerate}
+ 	\item Рассматривается кривая, которая описывает
+		изменение спроса на потребительские товары в зависимости от дохода потребителя
+	\item Обозначм доход потребителя через $y$,
+		величину предъявляемоего спроса через  $x$
+	\item В соответсвии с конфигурацией кривой спроса 
+		выделяются три группы товаров на рынке.
+ \end{enumerate}
+ \subsubsection{Товары первой необходимости}
+ \begin{equation}
+ x_1(y) - \frac{a_1 y}{x_1 + y}
+ \end{equation} 
+ Спрос
+  \begin{enumerate}
+ 	\item $y$ доход потребителя
+	\item  $x_1$ объем спроса на товары первой необходимости
+	\item $a_1,c_1$ параметры зависимости $a_1>0,c_1>0$
+ \end{enumerate}
+ \subsubsection{Товары длительного пользования}
+ \begin{equation}
+ x_2(y) = 
+ \frac{a_2 (y - M_2)}{c_2 + y}
+ \end{equation} 
+ \begin{enumerate}
+	 \item $y$ доход потребителя  $y>M_2$
+	\item $x_2$ объем спроса на предметы длительного 
+		пользования
+	\item $a_2,c_2,M_2$ параметры зависимости $a_2>a_1>0, c_2 >0, M_2 > 0$
+ \end{enumerate}
+ \subsubsection{Предметы Роскоши}
+ \begin{equation}
+ x_3(y) = \frac{a y (y - M_3)}{c_3 + y}
+ \end{equation} 
+ \begin{enumerate}
+ 	\item $y$ -- доход потребителя  $y > M_3$
+	\item $x_3$ объем спроса на предметы роскоши
+	\item $a_3,c_3,M_3$ параметры зависимости причем 
+		$a_3>0,c_3>0,M_3>M_2>0$
+ \end{enumerate}
+ \section{Хикс}
+ Эффект цены заключается в том, что
+ потребитель товара $b$,
+ сокращает его потребление.
+ При этом на него воздействуют
+ два эффект -- эффект дохода 
+ реальный доход снижается. 
+ Эффект замены (один из товаров становится более дорогим по
+ отношению к другому)
+
+ \subsection{Логика Хикса}
+ Давайте дадим потребителю
+ денег, чтобы он сохранил потребление.
+ Потребителю нужно скопенсировать подорожание
+ $D$ чтобы уровень полезности не изменился
+\end{document} 

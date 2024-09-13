@@ -13,10 +13,12 @@
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
 \newtheorem{definition}{Определение}
+\newtheorem{pred}{Предложение}[section]
 \newtheorem{example}{Пример}[definition]
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
 \DeclareMathOperator{\intt}{Int}
+\newcommand{\bm}[1]{ \left.#1\right|}
 \title{}
 \author{}
 \date{}
@@ -180,5 +182,216 @@
 		\item объедение бесконечного числа замкнутых множеств может быть открытым
 		\end{enumerate}
 \end{enumerate}
+\section{}
+Понятие метрики позволяет определять на $M$ 
+понятия сходимости и непрерывности.
+
+Рассмотрим $\{x_{n}\} \in M$
+\begin{definition}
+	$x_{n} \to a \in M$  если 
+	\begin{equation}
+	\forall  \epsilon >  0 \exists  N = N(\epsilon) : \forall   n \ge  N~\rho(x_{n},a) < \epsilon
+	\end{equation} 
+\end{definition}
+Сохраняются многие свойства обычного
+предела $x_{n} \to a \iff \rho(x_{n},a) \to 0 ,n \to \infty$
+\begin{pred}
+	$\exists  \lim$ то он единственный
+\end{pred}
+\begin{proof}
+	Пусть $x_{n} \to a_1$ , $x_{n} \to a_2$ , $a_1 \neq a_2$
+	\begin{equation}
+	\rho(a_1,a_2) \le \rho(a_1,x_{n} ) + \rho(x_{n},a_{a_2})
+	\end{equation} 
+	\begin{equation}
+	\rho(a_1,x_{n}) \to 0
+	\end{equation} 
+	\begin{equation}
+	\rho(a_2,x_{n}) \to 0
+	\end{equation} 
+
+\begin{equation}
+0 \le  \rho(a_1,a_2) \le  0
+\end{equation} 
+\begin{equation}
+\rho(a_1,a_2) = 0 \implies a_1 = a_2
+\end{equation} 
+\end{proof}
+Теперь надо ввести понятие непреывности. 
+Пусть $(M_1,\rho_1)$, $(M_2,\rho_2)$ два метрических пространства
+
+Рассмотрим $f : M_1 \to M_2$
+\begin{definition}
+	$f$ непрерывно в точке  $x_0 \in M_1$ если
+	$\forall  \epsilon > 0 \exists  \delta = \delta(\epsilon) :
+	\forall x \rho_1(x,x_0) < \delta : \rho_2(f(x),f(x_0)) < \epsilon$
+\end{definition}
+\begin{definition}
+	 $f$ непрерывна на  $M_1$ $\iff$ она непрерывна в любой точке
+	  $M_1$
+\end{definition}
+\begin{pred}
+	Метрика $\rho$ автоматически непрерывная функция
+	 $\rho: M \times M \to \mathbb{R}$
+\end{pred}
+\begin{proof}
+	$\forall  (x_0,y_0) \in M \times M$ 
+	\begin{equation}
+	\forall  \epsilon > 0 \exists  \delta = \delta(\epsilon) :
+	\forall x: \rho(x,x_o) < \delta,
+	\forall  y  \rho(y,y_0) < \delta 
+	\implies 
+	\overline{\rho} ((x,y),(x_0,y_0)) < \epsilon
+	\end{equation} 
+	Пусть $\overline{\rho}((x,y),(x_0,y_0)) = \rho(x,x_0)+\rho(y,y_0)$
+	\begin{equation}
+	\delta = \frac{\epsilon}{2}
+	\end{equation} 
+	\begin{equation}
+	\overline{\rho((x,y),(x_0,y_0))} < \frac{\epsilon}{2} +
+	\frac{\epsilon}{2} = \epsilon
+	\end{equation} 
+\end{proof}
+\begin{example}
+	$\exists $ метрика в которой любая функция непрерывна
+	\begin{equation}
+	\rho(x,y) = 
+	\begin{cases}
+		0, x= y\\
+		1, x\neq y
+	\end{cases}
+	\end{equation} 
+\end{example}
+\begin{definition}
+	$\{x_{n}\}$ называется фундаментальной (или последовательностью Коши) или сходящейся в себе, если 
+	\begin{equation}
+	\forall  \epsilon > 0 \exists  N=N(\epsilon) :
+	\forall n , m \ge  N : \rho(x_{n},x_{m}) < \epsilon
+	\end{equation} 
+	Другой вариант 
+	\begin{equation}
+	\forall  \epsilon  > 0, \exists  N = N(\epsilon) :
+	\forall n \ge  N , \forall m \in \mathbb{N}:
+	\rho(x_{n},x_{n + m}) < \epsilon
+	\end{equation} 
+\end{definition}
+\begin{pred}
+	В любом метрическом постранстве, если
+	последовательность сходится, то она фундаментальная
+\end{pred}
+\begin{proof}
+	Пусть $x_{n} \to a \implies$
+	 \begin{equation}
+	 \forall  \epsilon \exists  N: \forall n \ge  N, 
+	 \rho(x_{n},a) < \frac{\epsilon}{2}
+	 \end{equation} 
+	 \begin{equation}
+	 n,m \ge  N 
+	 \end{equation} 
+	 \begin{equation}
+	 \rho(x_{n},x_{m}) \le \rho(x_{n},a) + \rho(x_{n},a) <
+	 \frac{\epsilon}{2} + \frac{\epsilon}{2}  = \epsilon
+	 \end{equation} 
+\end{proof}
+\begin{definition}
+	Метрическое пространство $(M,\rho)$ 
+	если  $\forall $ фундаментальная последовательность
+	имеет предел 
+	(из фундаментальность  следует сходимость)
+\end{definition}
+\begin{theorem}
+$\forall $ метрического пространства
+$(M,\rho)$  $\exists $ полное метрическое пространство
+$\overline{M},\overline{\rho}$
+ \begin{equation}
+	 M \subset \overline{M},\bm{\overline{\rho}}_{M} = \rho
+ \end{equation} 
+\end{theorem}
+\begin{example}
+	Рассмотрим $\mathbb{Q}$  $\rho(r_1,r_2) = |r_1 - r_2|$
+	Оно не полное
+
+	\begin{equation}
+		\{r_{n }\} \to \sqrt{2} \notin  \mathbb{Q}
+	\end{equation} 
+	$\{r_{n}\}$ фундаментальная последовательность в  $\mathbb{R}$, значит она фундаментальная последовательность в $\mathbb{Q}$
+\end{example}
+\section{Пространство Чебышева}
+Рассмотрим множество непрерывных
+функций $f[a;b] \to \mathbb{R}$ $C([a,b])$
+\begin{definition}[метрика Чебышева]
+	\begin{equation}
+		\rho_{C}(f_1,f_2) = \max_{x \in [a,b]} |f_1(x) - f_2(x)|
+	\end{equation} 
+\end{definition}
+$\exists  \max$  по теореме Вейерштрасса
+\begin{enumerate}
+	\item $\rho_{C}$ очевидно , $\phi_{C}(f_1,f_2) = 0 \iff
+		\max_{[a,b]}|f_1(x) - f_2(x)| = 0 \iff
+		|f_1(x) - f_2(x)| =  0$
+	\item очевидно
+	\item 
+		\begin{equation}
+		\rho_{C}(f_1,f_2) \le 
+		\rho_{C}(f_1,g) +
+		\rho_{c}(g,g_2)
+		\end{equation} 
+		\begin{equation}
+			\max_{[a,b]} |f_1(x) -f_2(x)|
+			\le \max_{[a,b]}(|f_1 - f| + |g - f_2|)
+			\le \max_{[a,b]} |f_1 - g| + \max_{[ a,b ]} |g-f_2|
+		\end{equation} 
+\end{enumerate}
+Посмотрим, что означает сходимость по метреке  Чебышева
+\begin{equation}
+f_{n} \to f \iff \rho_{c}(f_{n},f) \to 0
+\iff \max_{[a,b]} |f_{n}(x) - f(x)| \to 0
+\end{equation} 
+Это равномерная сходмость $f_{n}\rightarrow $
+\begin{definition}
+	$f_{n}(x)$ сходится $f(x)$ 
+	поточечно $[a,b]$ если 
+	$\forall x \in [a,b] $ , $f_{n}(x) \to f(f)$
+\end{definition}
+\begin{definition}
+	$f_{n}(x) $ сходится к $f(x)$  равно мено на  $[a,b]$
+	если  $\forall  \epsilon > 0 \exists  N = N(\epsilon) ~
+	\forall n\ge  N$, то 
+	$|f_{n}(x) - f(x)| < \epsilon \forall  x \in [a,b]$
+	\begin{equation}
+		\max_{[a,b]} |f_{n}(x) - f(x)| < \epsilon
+	\end{equation} 
+\end{definition}
+$[a,b] = [0,1]$ , $f_{n}(x) = x^{n}$
+ \begin{enumerate}
+ 	\item $x = 1, f_{n}(x) = 1$
+	 \item $x \in [0,1)$   $f_{n}(x) = x^{n} \to 0$
+ \end{enumerate}
+ \begin{equation}
+	 f_{n}(x) \to f(x) 
+	 \begin{cases}
+		 0 , x\in[0,1)\\
+		 1 , x = 1
+	 \end{cases}
+ \end{equation} 
+ $f \notin C$
+  \begin{theorem}
+ 	Равномерный предел непрерывных функций
+	есть непрерывная функция
+ \end{theorem}
+ \begin{theorem}
+	 $C([a,b])$ с метрикой  $\rho_{c}$ полное
+ \end{theorem}
+ \begin{proof}
+	 $\{f_{n}(x)\}$  фундаментальная последовательность.
+	 \begin{equation}
+		 \forall  \epsilon > 0 \forall  x\in [a,b] 
+		 \exists  N = N(e,x) :
+		 \forall n,m \ge  N \implies |f_{n}(x) -f_{m} (x) | <\epsilon
+	 \end{equation} 
+	 Так как $\mathbb{R}$ полно $\exists  \lim_{n \to \infty} 
+	 f_{n}(x) = f(x)$
+ \end{proof}
 \end{document}
+
 

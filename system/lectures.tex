@@ -11,11 +11,14 @@
 \setlength{\parindent}{1.25cm}
 \usepackage[right=10mm,left=30mm,top=20mm,bottom=20mm]{geometry}
 \newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
 \newtheorem{corollary}{Следствие}[theorem]
 \newtheorem{lemma}[theorem]{Лемма}
 \title{}
 \author{}
 \date{}
+\DeclareMathOperator{\pv}{PV}
+\DeclareMathOperator{\cf}{CF}
 \begin{document}
 	\maketitle
 	Изучаем системный анализ финансового рынка.
@@ -34,5 +37,13 @@
 	существуют ряд 
 	моделей для измерения
 	риска доходности
+	\begin{equation}
+		\pv = \sum_{i = 1}^{n} \frac{\cf_{i}}{(1 + r_{i})^{n}}
+	\end{equation} 
+	\begin{enumerate}
+		\item $n$ срок жизни финансового актива
+		\item $\cf_{i}$ cash flow (денежный поток) в момент времени $i$
+		\item  $r_{i}$ ставка дисконтирования
+	\end{enumerate}
 \end{document}
 
